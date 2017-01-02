@@ -10,6 +10,12 @@ var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
+
+console.log(path.join(__dirname , '/../node_modules/vue/dist/vue.common.js'))
+
+console.log("PATH:"+path.resolve(__dirname,'../node_modules/vue-material/dist/vue-material.js'))
+
+
 module.exports = {
   entry: {
     app: './src/main.js'
@@ -23,29 +29,20 @@ module.exports = {
     extensions: ['', '.js', '.vue', '.json'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
-      'vue$': 'vue/dist/vue.common.js',
+      'vue': path.resolve(__dirname,'../node_modules/vue/dist/vue.common.js'),
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components')
     }
   },
   resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
+    fallback: [
+      path.join(__dirname, '../node_modules')
+    ]
   },
   module: {
     preLoaders: [
-      {
-        test: /\.vue$/,
-        loader: 'eslint',
-        include: projectRoot,
-        exclude: /node_modules/
-      },
-      {
-        test: /\.js$/,
-        loader: 'eslint',
-        include: projectRoot,
-        exclude: /node_modules/
-      }
+
     ],
     loaders: [
       {
@@ -77,11 +74,11 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      }
+      } 
     ]
   },
   eslint: {
-    formatter: require('eslint-friendly-formatter')
+    // formatter: require('eslint-friendly-formatter')
   },
   vue: {
     loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),

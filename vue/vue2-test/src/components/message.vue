@@ -1,0 +1,1288 @@
+
+
+<script>
+export default {
+  name: 'message',
+  data () {
+    return {
+      head_prefix: 'http://ht-head.oss-cn-shenzhen.aliyuncs.com/',
+      msg: 'Welcome to Your chat.js App',
+     }
+  },
+  methods: {
+
+  }
+}
+</script>
+
+<template>
+<div class="main-content" style="transform: translateX(0px);">
+
+
+
+
+
+<div class="room-container"><div class="dropzone">
+<div class="dropzone-overlay">
+<div>
+Drop to upload file
+</div>
+</div>
+<section class="messages-container" id="chat-window-4SFNEydqQhHtj5KkPD5XuHAoeDqQADsHLR" aria-label="Channel">
+
+<header class="fixed-title">
+<div class="burger">
+<i></i>
+<i></i>
+<i></i>
+
+<div class="unread-burger-alert">
+•
+</div>
+
+</div>
+<h2>
+
+<a href="#favorite" class="toggle-favorite"><i class="icon-star-empty" aria-label="Favorite"></i></a>
+
+<i class="icon-at status-offline"></i>
+<span class="room-title">gabriel.engel</span>
+<span class="room-topic"></span>
+</h2>
+</header>
+
+<div class="container-bars">
+
+
+
+
+</div>
+<div class="messages-box" style="height: calc(100% - 131px);">
+<div class="ticks-bar"></div>
+<button class="new-message not">
+<i class="icon-down-big"></i>
+New messages
+</button>
+<div class="jump-recent not">
+<button>Jump to recent messages <i class="icon-level-down"></i></button>
+</div>
+
+<div class="wrapper">
+<ul aria-live="polite">
+
+
+    <li class="start">
+      Start of conversation
+    </li>
+
+
+
+  <li id="jnvHymFRfPKZDXmzi" class="message   own    new-day" data-username="lien.lee" data-date="January 1, 2017" data-timestamp="1483274340574">
+<div class="day-divider">
+<span>January 1, 2017</span>
+</div>
+
+
+<button class="thumb user-card-message" data-username="lien.lee" tabindex="1"><div class="avatar">
+<div class="avatar-image" style="background-image:url(http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160803/c2aa08ac6ad0502a6_0c791.jpg);"></div>
+</div></button>
+
+
+
+<button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
+
+<span class="info">
+
+
+<span class="time" title="January 1, 2017 8:39 PM">8:39 PM</span>
+
+
+<div class="message-cog-container ">
+<i class="icon-cog message-cog" aria-label="Actions"></i>
+<div class="message-dropdown" style="display: none;">
+<ul>
+<li class="message-dropdown-close"><i class=" icon-angle-left" aria-label="Close"></i></li>
+
+
+<li class="reply-message  message-action" title="Reply" data-id="reply-message"><i class="icon-reply" aria-label="Reply"></i></li>
+
+<li class="edit-message  message-action" title="Edit" data-id="edit-message"><i class="icon-pencil" aria-label="Edit"></i></li>
+
+<li class="delete-message  message-action" title="Delete" data-id="delete-message"><i class="icon-trash-alt" aria-label="Delete"></i></li>
+
+<li class="permalink clipboard message-action" title="Permalink" data-id="permalink"><i class="icon-link" aria-label="Permalink"></i></li>
+
+<li class="copy clipboard message-action" title="Copy" data-id="copy"><i class="icon-paste" aria-label="Copy"></i></li>
+
+<li class="quote-message  message-action" title="Quote" data-id="quote-message"><i class="icon-quote-left" aria-label="Quote"></i></li>
+
+<li class="star-message  message-action" title="Star Message" data-id="star-message"><i class="icon-star-empty" aria-label="Star Message"></i></li>
+
+<li class="reaction-message  message-action" title="Reactions" data-id="reaction-message"><i class="icon-people-plus" aria-label="Reactions"></i></li>
+
+
+</ul>
+</div></div>
+</span>
+<div class="body" dir="auto">
+hello
+
+
+</div>
+<ul class="actionLinks hidden">
+
+</ul>
+<ul class="reactions hidden">
+
+<li class="add-reaction">
+<span class="icon-people-plus"></span>
+</li>
+</ul>
+</li>
+
+  <li id="YuryXffkfXm7mb8to" class="message   own    new-day" data-username="lien.lee" data-date="January 2, 2017" data-timestamp="1483335767929">
+<div class="day-divider">
+<span>January 2, 2017</span>
+</div>
+
+
+<button class="thumb user-card-message" data-username="lien.lee" tabindex="1"><div class="avatar">
+<div class="avatar-image" style="background-image:url(http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160803/c2aa08ac6ad0502a6_0c791.jpg);"></div>
+</div></button>
+
+
+
+<button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
+
+<span class="info">
+
+
+<span class="time" title="January 2, 2017 1:42 PM">1:42 PM</span>
+
+
+<div class="message-cog-container ">
+<i class="icon-cog message-cog" aria-label="Actions"></i>
+</div>
+</span>
+<div class="body" dir="auto">
+nihao
+
+
+</div>
+<ul class="actionLinks hidden">
+
+</ul>
+<ul class="reactions hidden">
+
+<li class="add-reaction">
+<span class="icon-people-plus"></span>
+</li>
+</ul>
+</li>
+
+  <li id="4mZSbdjMAK5MCd9qh" class="message sequential   own" data-username="lien.lee" data-date="January 2, 2017" data-timestamp="1483335773379">
+<div class="day-divider">
+<span>January 2, 2017</span>
+</div>
+
+
+<button class="thumb user-card-message" data-username="lien.lee" tabindex="1"><div class="avatar">
+<div class="avatar-image" style="background-image:url(http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160803/c2aa08ac6ad0502a6_0c791.jpg);"></div>
+</div></button>
+
+
+
+<button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
+
+<span class="info">
+
+
+<span class="time" title="January 2, 2017 1:42 PM">1:42 PM</span>
+
+
+<div class="message-cog-container ">
+<i class="icon-cog message-cog" aria-label="Actions"></i>
+</div>
+</span>
+<div class="body" dir="auto">
+<span class="emojione emojione-1f61b big" title=":stuck_out_tongue:">😛</span>
+
+
+</div>
+<ul class="actionLinks hidden">
+
+</ul>
+<ul class="reactions hidden">
+
+<li class="add-reaction">
+<span class="icon-people-plus"></span>
+</li>
+</ul>
+</li>
+
+
+</ul>
+</div>
+</div>
+<footer class="footer">
+
+<form class="message-form" method="post" action="/">
+<div class="message-popup-results">
+
+
+
+
+
+
+</div>
+
+<div class="message-input">
+<div class="input-message-container">
+<textarea dir="ltr" name="msg" class="input-message autogrow-short" placeholder="Message" style="height: 49px;"></textarea>
+
+<div class="inner-left-toolbar">
+<i class="emoji-picker-icon icon-people"></i>
+</div>
+</div>
+
+
+
+<div class="message-buttons file">
+  <i class="icon-attach file"></i>
+  <input type="file" accept="image/*,audio/*,video/*,application/zip,application/gzip,application/x-gzip,application/x-rar-compressed,application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+</div>
+
+
+
+
+
+
+
+
+<div class="message-buttons">
+  <div class="mic">
+    <i class="icon-mic" aria-label="Record"></i>
+  </div>
+  <div class="stop-mic hidden">
+    <i class="icon-stop" aria-label="Stop Recording"></i>
+  </div>
+</div>
+
+
+
+<div class="message-buttons video-button">
+  <i class="icon-videocam" aria-label="Record"></i>
+</div>
+
+
+
+
+</div>
+
+<div class="stream-info">
+
+</div>
+
+
+<div class="formatting-tips" aria-hidden="true" dir="auto">
+
+<b>*bold*</b>
+<i>_italics_</i>
+<span>~<strike>strike</strike>~</span>
+
+
+<code class="inline">`inline_code`</code>
+<code class="inline"><span class="hidden-br"><br></span>```<span class="hidden-br"><br></span><i class="icon-level-down"></i>multi<span class="hidden-br"><br></span><i class="icon-level-down"></i>line<span class="hidden-br"><br></span><i class="icon-level-down"></i>```</code>
+
+
+<span><a href="https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX" target="_blank">\[KaTeX\]</a></span>
+
+
+<q><span class="hidden-br"><br></span>&gt;quote</q>
+
+</div>
+
+
+<div class="editing-commands" aria-hidden="true" dir="auto">
+<div class="editing-commands-cancel">Esc to <button type="button">Cancel</button></div>
+<div class="editing-commands-save">Enter to <button type="button">Save changes</button></div>
+</div>
+</form>
+
+</footer>
+</section>
+<section class="flex-tab">
+
+
+
+
+</section>
+</div></div></div>
+
+</template>
+
+<style  >
+
+.main-content {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 290px;
+    right: 40px;
+    width: auto;
+    height: auto;
+    will-change: transform;
+    -webkit-transition: right 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+    -moz-transition: right 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+    -o-transition: right 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+    transition: right 0.25s cubic-bezier(0.5, 0, 0.1, 1)
+}
+
+.main-content.flex-opened {
+    right: 440px
+}
+
+.main-content.layout1 {
+    right: 400px
+}
+
+.main-content.layout1 .flex-tab {
+    max-width: 400px
+}
+
+.main-content.layout2 {
+    right: 850px
+}
+
+.main-content.layout2 .flex-tab {
+    max-width: 850px
+}
+
+.main-content.main-modal {
+    left: 0;
+    margin-right: 0
+}
+
+.main-content .container-fluid {
+    padding-top: 0
+}
+
+.main-content .history-date {
+    margin-bottom: 20px
+}
+
+.messages-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-width: 0 1px 0 0
+}
+
+.messages-container .room-topic {
+    font-size: 14px;
+    opacity: 0.4;
+    margin-left: 10px
+}
+
+.messages-container .edit-room-title {
+    margin-left: 4px;
+    font-size: 16px
+}
+
+.messages-container .wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    -webkit-overflow-scrolling: touch
+}
+
+.messages-container .footer {
+    position: absolute;
+    padding: 8px 20px 0;
+    border-width: 1px 0 0;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 70px
+}
+
+.messages-container .message-form {
+    margin-bottom: 18px
+}
+
+.messages-container .message-form>.message-input {
+    border-width: 1px;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+    display: flex
+}
+
+.messages-container .message-form>.message-input .input-message-container {
+    position: relative;
+    width: 100%
+}
+
+.messages-container .message-form>.message-input .input-message-container .inner-left-toolbar {
+    position: absolute;
+    left: 13px;
+    top: 9px
+}
+
+.messages-container .message-form>.message-input>.message-buttons {
+    flex: 0 0 35px;
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    -webkit-transition: background-color 0.1s linear, color 0.1s linear;
+    -moz-transition: background-color 0.1s linear, color 0.1s linear;
+    -o-transition: background-color 0.1s linear, color 0.1s linear;
+    transition: background-color 0.1s linear, color 0.1s linear
+}
+
+.messages-container .message-form>.message-input>.message-buttons i {
+    font-size: 18px
+}
+
+.messages-container .message-form>.message-input>.message-buttons input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    opacity: 0;
+    cursor: pointer
+}
+
+.messages-container .message-form>.message-input>.message-buttons input::-webkit-file-upload-button {
+    cursor: pointer
+}
+
+.messages-container .message-form textarea {
+    display: block;
+    margin: 0;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 49px;
+    border-radius: 0;
+    overflow-y: hidden;
+    resize: none;
+    line-height: 16px;
+    border-width: 0 1px 0 0
+}
+
+.messages-container .message-form .users-typing {
+    float: left;
+    height: 23px;
+    font-size: 12px;
+    padding: 3px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    z-index: 10
+}
+
+.messages-container .message-form .formatting-tips {
+    float: right;
+    height: 25px;
+    font-size: 11px;
+    padding: 3px;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    right: 20px;
+    opacity: 0.5;
+    white-space: nowrap;
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear
+}
+
+.messages-container .message-form .formatting-tips>* {
+    margin: 0 3px
+}
+
+.messages-container .message-form .formatting-tips:hover {
+    opacity: 1
+}
+
+.messages-container .message-form .formatting-tips q {
+    padding: 0 0 0 3px;
+    border-width: 0 0 0 3px
+}
+
+.messages-container .message-form .formatting-tips q::before {
+    content: none !important
+}
+
+.messages-container .message-form .formatting-tips code {
+    line-height: 13px;
+    overflow: hidden;
+    vertical-align: top;
+    font-size: 10px;
+    white-space: nowrap
+}
+
+.messages-container .message-form .formatting-tips .hidden-br {
+    display: inline-block
+}
+
+.messages-container .message-form .formatting-tips .icon-level-down::before {
+    transform: rotate(90deg)
+}
+
+.messages-container .message-form .stream-info {
+    font-size: 12px;
+    height: 25px;
+    padding: 3px;
+    float: left
+}
+
+.messages-container .message-form .editing-commands {
+    display: none;
+    text-transform: lowercase
+}
+
+.messages-container .message-form .editing-commands .editing-commands-cancel {
+    float: left;
+    height: 23px;
+    font-size: 11px;
+    padding: 3px
+}
+
+.messages-container .message-form .editing-commands .editing-commands-save {
+    float: right;
+    height: 23px;
+    font-size: 11px;
+    padding: 3px
+}
+
+.messages-container .message-form.editing .formatting-tips,.messages-container .message-form.editing .users-typing {
+    display: none
+}
+
+.messages-container .message-form.editing .editing-commands {
+    display: block
+}
+
+.messages-container .message-form.editing .stream-info {
+    display: none
+}
+
+.messages-container .add-user-search {
+    height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%
+}
+
+.messages-container.admin .message:hover:not(.system) .message-action {
+    display: inline-block
+}
+
+.message-popup-position {
+    position: relative
+}
+
+.message-popup {
+    position: absolute;
+    z-index: 101;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    box-shadow: 0 -1px 10px 0 rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.16);
+    border-radius: 5px
+}
+
+
+
+
+.fixed-title {
+    position: absolute;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    padding: 0 10px 0 20px;
+    border-width: 0 0 1px;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 61px
+}
+
+.fixed-title.visible h2 {
+    overflow: visible
+}
+
+.fixed-title h2 {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 29px
+}
+
+.fixed-title h2 .icon-at,.fixed-title h2 .icon-hash,.fixed-title h2 .icon-lock {
+    margin-right: -7px
+}
+
+.fixed-title h2 .icon-star,.fixed-title h2 .icon-star-empty {
+    margin-right: -4px
+}
+
+.fixed-title .submit {
+    display: flex
+}
+
+.fixed-title .submit .button {
+    white-space: nowrap;
+    margin-left: 1rem
+}
+
+.fixed-title .animated-hidden {
+    visibility: hidden;
+    display: none
+}
+
+.fixed-title input[type='text'] {
+    -lh-property: 0;
+    width: -webkit-calc(100% - 100px);
+    width: -moz-calc(100% - 100px);
+    width: calc(100% - 100px);
+    vertical-align: top;
+    margin-top: -4px;
+    margin-left: -3px;
+    font-size: 20px
+}
+
+.fixed-title .icon-pencil {
+    vertical-align: text-top;
+    margin-top: -7px;
+    display: inline-block;
+    font-size: 16px
+}
+
+
+
+
+.messages-box {
+    position: relative;
+    margin: 60px 20px 0 0;
+    overflow: hidden;
+    width: 100%;
+    -lh-property: 0;
+    height: -webkit-calc(100% - 120px);
+    height: -moz-calc(100% - 120px);
+    height: calc(100% - 120px)
+}
+
+.messages-box .message-cog-container .message-action.jump-to-search-message {
+    display: none !important
+}
+
+.messages-box .wrapper.has-more-next {
+    padding-bottom: 24px
+}
+
+.messages-box ul {
+    padding: 21px 0 10px
+}
+
+.messages-box .start {
+    text-align: center;
+    margin-top: 12px
+}
+
+.messages-box .new-message {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0 -65px;
+    position: absolute;
+    border-radius: 20px;
+    width: 130px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 0.8em;
+    cursor: pointer;
+    bottom: 8px;
+    left: 50%;
+    z-index: 15;
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: -webkit-transform 0.3s ease-out,-moz-transform 0.3s ease-out,-o-transform 0.3s ease-out,transform 0.3s ease-out;
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px)
+}
+
+.messages-box .new-message.not {
+    -webkit-transform: translateY(150%);
+    -moz-transform: translateY(150%);
+    -ms-transform: translateY(150%);
+    -o-transform: translateY(150%);
+    transform: translateY(150%)
+}
+
+.messages-box .jump-recent {
+    z-index: 15;
+    position: absolute;
+    text-align: right;
+    height: 24px;
+    line-height: 24px;
+    font-size: 0.8em;
+    padding-right: 20px;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: -webkit-transform 0.3s ease-out,-moz-transform 0.3s ease-out,-o-transform 0.3s ease-out,transform 0.3s ease-out;
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px)
+}
+
+.messages-box .jump-recent button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer
+}
+
+.messages-box .jump-recent.not {
+    -webkit-transform: translateY(150%);
+    -moz-transform: translateY(150%);
+    -ms-transform: translateY(150%);
+    -o-transform: translateY(150%);
+    transform: translateY(150%)
+}
+
+.messages-box .editing .body {
+    border-radius: 4px
+}
+
+.messages-box.selectable .message {
+    cursor: pointer
+}
+
+.ticks-bar {
+    width: 10px;
+    position: absolute;
+    right: 2px;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none
+}
+
+.ticks-bar .tick {
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    position: absolute;
+    border-radius: 2px
+}
+
+.message {
+    padding: 8px 20px 4px 70px;
+    position: relative;
+    line-height: 20px;
+    min-height: 40px
+}
+
+.message.highlight {
+    -webkit-animation: highlight 3s;
+    -moz-animation: highlight 3s;
+    -o-animation: highlight 3s;
+    animation: highlight 3s
+}
+
+.message:nth-child(1) {
+    margin-top: 0
+}
+
+.message .day-divider {
+height: 50px;
+display: none;
+text-align: center;
+left: 0;
+position: absolute;
+top: 0;
+right: 0;
+align-items: center;
+justify-content: center;
+}
+
+.message .day-divider span {
+    padding: 0 8px;
+    z-index: 1;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600
+}
+
+.message .day-divider::before {
+    position: absolute;
+    content: " ";
+    display: block;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    top: 25px;
+    left: 0;
+    right: 0
+}
+
+.message.new-day {
+    margin-top: 60px
+}
+
+.message.new-day::before {
+    content: attr(data-date);
+    display: block;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    -lh-property: 0;
+    left: -webkit-calc(50% - 70px);
+    left: -moz-calc(50% - 70px);
+    left: calc(50% - 70px);
+    z-index: 10;
+    padding: 0 10px;
+    min-width: 140px
+}
+
+.message.new-day::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    border-width: 1px 0 0;
+    width: 100%
+}
+
+.message .message-action {
+    display: none;
+    cursor: pointer
+}
+
+.message:hover:not(.system) .message-action {
+    display: block
+}
+
+.message .message-cog-container {
+    position: relative;
+    display: inline-block
+}
+
+.message .message-cog-container .message-cog {
+    visibility: hidden;
+    cursor: pointer
+}
+
+@keyframes dropdown-in {
+    0% {
+        display: none;
+        opacity: 0
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+        transform: scale(0)
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+
+.message .message-dropdown {
+    position: absolute;
+    top: -5px;
+    left: -2px;
+    z-index: 1000;
+    display: none;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
+    animation: dropdown-in 0.15s ease-in-out
+}
+
+.message .message-dropdown ul {
+    display: flex;
+    display: -webkit-flex;
+    padding: 0;
+    font-size: 14px
+}
+
+.message .message-dropdown ul li {
+    display: block;
+    padding: 0 8px;
+    font-weight: 400;
+    line-height: 26px;
+    cursor: pointer
+}
+
+.message .message-dropdown ul li:first-child {
+    padding-left: 6px;
+    border-width: 0 1px 0 0
+}
+
+.message .message-dropdown ul li:last-child {
+    padding-right: 13px
+}
+
+.message .user {
+    display: inline-block;
+    font-weight: 600;
+    margin-right: 5px
+}
+
+.message .thumb {
+    position: absolute;
+    left: 20px;
+    display: block;
+    width: 40px;
+    height: 40px
+}
+
+button {
+    background: none;
+    border-width: 0;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    text-transform: inherit;
+    color: inherit;
+    font-style: inherit
+}
+
+.message .thumb:not(.thumb-small) .avatar {
+    width: 40px;
+    height: 40px
+}
+
+.message .thumb.thumb-small {
+    position: initial;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: bottom
+}
+
+.message .thumb.thumb-small .avatar {
+    width: 20px;
+    height: 20px
+}
+
+.message .info {
+    font-size: 12px
+}
+
+.message .info .edited {
+    border-left: 1px dotted;
+    padding-left: 3px;
+    margin-left: 3px
+}
+
+.message .info .is-bot,.message .info .role-tag {
+    padding: 1px 4px;
+    border-radius: 2px
+}
+
+.message .private {
+    margin-left: 10px
+}
+
+.message.sequential {
+    min-height: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 0
+}
+
+.message.sequential .user {
+    display: none
+}
+
+.message.sequential .thumb:not(.thumb-small) {
+    display: none
+}
+
+.message.sequential .info {
+    position: absolute;
+    text-align: right;
+    left: 5px;
+    width: 60px
+}
+
+.message.sequential .info .time,.message.sequential .info .role-tag {
+    display: none
+}
+
+.message.sequential .info .edited {
+    display: block;
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
+    white-space: nowrap
+}
+
+.message.sequential .info .private {
+    display: none
+}
+
+.message.sequential .info .message-action {
+    float: left;
+    margin-left: 1px
+}
+
+.message.sequential .body {
+    margin-top: 0
+}
+
+.message.sequential:hover .edited {
+    display: none
+}
+
+.message.system .body {
+    font-style: italic
+}
+
+.message.system .body em {
+    font-weight: 600
+}
+
+.message.system .body .attachment {
+    font-style: normal
+}
+
+.message .avatar-initials {
+    line-height: 40px
+}
+
+.message button {
+    font-weight: 400
+}
+
+.message button:hover {
+    text-decoration: underline
+}
+
+.message .body {
+    opacity: 1;
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    transition: opacity 1s linear;
+    margin-top: 2px
+}
+
+.message .body .inline-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center left;
+    display: inline-block;
+    line-height: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    overflow: hidden
+}
+
+.message .body .inline-image img {
+    max-height: 200px;
+    max-width: 100%;
+    opacity: 0
+}
+
+.message .body>h1 {
+    font-size: 3em;
+    line-height: 1em
+}
+
+.message .body>h2 {
+    font-size: 2.5em;
+    line-height: 1em
+}
+
+.message .body>h3 {
+    font-size: 2em;
+    line-height: 1em
+}
+
+.message .body>h4 {
+    font-size: 1.5em;
+    line-height: 1em
+}
+
+.message .body blockquote.sandstorm-grain img {
+    width: 50px
+}
+
+.message .body blockquote.sandstorm-grain label {
+    cursor: pointer
+}
+
+.message .body blockquote.sandstorm-grain button {
+    display: block
+}
+
+.message.temp .body {
+    opacity: 0.5
+}
+
+.message .message-alias {
+    font-weight: 400;
+    padding-left: 2px
+}
+
+.main-content .loading-animation>div,.flex-tab .loading-animation>div {
+    background-color: #444
+}
+
+.message .actionLinks {
+    padding: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-align: center
+}
+
+.message .actionLinks li {
+    cursor: pointer;
+    position: relative;
+    padding-right: 2px;
+    color: #13679a;
+    list-style: none;
+    display: inline
+}
+
+.message .actionLinks li .action-link {
+    padding: 5px;
+    border-radius: 7px;
+    margin: 0 2px
+}
+
+.message .actionLinks li:last-child::after {
+    content: none
+}
+
+.hidden {
+    display: none !important
+}
+
+
+.avatar {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px
+}
+
+.avatar .emoji,.avatar .emojione {
+    width: 100%;
+    height: 100%;
+    margin: 0
+}
+
+.avatar .avatar-image {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center
+}
+
+.avatar[initials]::before {
+    content: attr(initials);
+    position: absolute;
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: bold
+}
+
+
+.message.new-day::before {
+    background-color: #fff
+}
+
+.message.new-day::after,.message .info,.message .user-view,.message .message-alias {
+    color: #ef0c0c;
+    border-color: #ff2020;
+}
+
+.message .user {
+    color: #444
+}
+
+.message .is-bot,.message .role-tag {
+    background-color: #a0a0a0;
+    color: #fff
+}
+
+.message a {
+    color: #13679a
+}
+
+.message a:hover {
+    color: #0d496d
+}
+
+.message a.mention-link {
+    color: #13679a
+}
+
+html::after,body::after,div::after,span::after,applet::after,object::after,iframe::after,h1::after,h2::after,h3::after,h4::after,h5::after,h6::after,p::after,blockquote::after,pre::after,a::after,abbr::after,acronym::after,address::after,big::after,cite::after,code::after,del::after,dfn::after,em::after,img::after,ins::after,kbd::after,q::after,s::after,samp::after,small::after,strike::after,strong::after,sub::after,sup::after,tt::after,var::after,b::after,u::after,i::after,center::after,dl::after,dt::after,dd::after,ol::after,ul::after,li::after,fieldset::after,form::after,label::after,legend::after,table::after,caption::after,tbody::after,tfoot::after,thead::after,tr::after,th::after,td::after,article::after,aside::after,canvas::after,details::after,embed::after,figure::after,figcaption::after,footer::after,header::after,hgroup::after,menu::after,nav::after,output::after,ruby::after,section::after,summary::after,time::after,mark::after,audio::after,video::after,html::before,body::before,div::before,span::before,applet::before,object::before,iframe::before,h1::before,h2::before,h3::before,h4::before,h5::before,h6::before,p::before,blockquote::before,pre::before,a::before,abbr::before,acronym::before,address::before,big::before,cite::before,code::before,del::before,dfn::before,em::before,img::before,ins::before,kbd::before,q::before,s::before,samp::before,small::before,strike::before,strong::before,sub::before,sup::before,tt::before,var::before,b::before,u::before,i::before,center::before,dl::before,dt::before,dd::before,ol::before,ul::before,li::before,fieldset::before,form::before,label::before,legend::before,table::before,caption::before,tbody::before,tfoot::before,thead::before,tr::before,th::before,td::before,article::before,aside::before,canvas::before,details::before,embed::before,figure::before,figcaption::before,footer::before,header::before,hgroup::before,menu::before,nav::before,output::before,ruby::before,section::before,summary::before,time::before,mark::before,audio::before,video::before {
+    border: 0 solid;
+}
+</style>

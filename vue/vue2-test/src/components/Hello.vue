@@ -25,7 +25,10 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      recentChats: [
+          {head_url: '20160803/c2aa08ac6ad0502a6_0c791.jpg', nickname: 900866},
+          {head_url: '20160803/c2aa08ac6ad0502a6_0c791.jpg', nickname: 200002}]
     }
   }
 }

@@ -1,17 +1,24 @@
+
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <chatlistview></chatlistview>
+  <div id="im-chat">
+    <imnavtab></imnavtab>
+
+    <message></message>
   </div>
+
+
 </template>
 
 <script>
-import chatlistview from './components/chatListView'
+
+import imnavtab from './components/imnavtab'
+import message from './components/message'
 
 export default {
-  name: 'app',
+  name: 'im-chat',
   components: {
-    chatlistview
+  message:      message,
+  imnavtab:   imnavtab
   }
 }
 </script>
@@ -23,6 +30,40 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
+}
+
+.side-nav {
+    color: rgba(255,255,255,0.6);
+    background-color: #3f51b5
+}
+.side-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 270px;
+    height: auto;
+    overflow: visible;
+    z-index: 100;
+    padding: 12px 0 0;
+    will-change: transform
+}
+
+#im-chat {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.2s ease-out;
+    -moz-transition: opacity 0.2s ease-out;
+    -o-transition: opacity 0.2s ease-out;
+    transition: opacity 0.2s ease-out
 }
 </style>

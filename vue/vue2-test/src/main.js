@@ -3,7 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 
-var VueMaterial = require('vue-material')
+/**/
+import VueMaterial from 'vue-material'
+
+import 'vue-material/dist/vue-material.css'
 
 Vue.use(VueMaterial)
 
