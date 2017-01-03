@@ -8,6 +8,8 @@ import VueMaterial from 'vue-material'
 
 import 'vue-material/dist/vue-material.css'
 
+import 'assets/message.css'
+
 Vue.use(VueMaterial)
 
 /* eslint-disable no-new */
