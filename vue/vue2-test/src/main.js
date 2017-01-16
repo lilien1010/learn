@@ -9,6 +9,7 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 
 import 'assets/message.css'
+import 'assets/rocket.css'
 
 Vue.use(VueMaterial)
 

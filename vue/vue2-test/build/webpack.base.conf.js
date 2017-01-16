@@ -15,6 +15,8 @@ console.log(path.join(__dirname , '/../node_modules/vue/dist/vue.common.js'))
 
 console.log("PATH:"+path.resolve(__dirname,'../node_modules/vue-material/dist/vue-material.js'))
 
+console.log('fonts:'+utils.assetsPath('fonts/font.[hash:7].[ext]'))
+
 
 module.exports = {
   entry: {
@@ -49,6 +51,8 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue'
       },
+
+      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/, loader: 'file-loader?limit=100000'},
       {
         test: /\.js$/,
         loader: 'babel',
@@ -67,14 +71,14 @@ module.exports = {
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
-      {
+      /*{
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url',
         query: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      } 
+      }*/
     ]
   },
   eslint: {
