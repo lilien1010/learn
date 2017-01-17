@@ -28,9 +28,9 @@ export default {
 Drop to upload file
 </div>
 </div>
-<section class="messages-container" id="chat-window-4SFNEydqQhHtj5KkPD5XuHAoeDqQADsHLR" aria-label="Channel">
+<section class="messages-container border-component-color " id="chat-window-4SFNEydqQhHtj5KkPD5XuHAoeDqQADsHLR" aria-label="Channel">
 
-  <header class="fixed-title">
+  <header class="fixed-title border-component-color">
   				<div class="burger">
   		<i></i>
   		<i></i>
@@ -91,7 +91,7 @@ New messages
 
 <button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
 
-<span class="info">
+<span class="info border-component-color color-info-font-color">
 
 
 <span class="time" title="January 1, 2017 8:39 PM">8:39 PM</span>
@@ -154,7 +154,7 @@ hello
 
 <button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
 
-<span class="info">
+<span class="info border-component-color color-info-font-color">
 
 
 <span class="time" title="January 2, 2017 1:42 PM">1:42 PM</span>
@@ -194,7 +194,7 @@ nihao
 
 <button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
 
-<span class="info">
+<span class="info border-component-color color-info-font-color">
 
 
 <span class="time" title="January 2, 2017 1:42 PM">1:42 PM</span>
@@ -224,7 +224,7 @@ nihao
 </ul>
 </div>
 </div>
-<footer class="footer">
+<footer class="footer border-component-color">
 
 <form class="message-form" method="post" action="/">
 <div class="message-popup-results">
@@ -236,9 +236,9 @@ nihao
 
 </div>
 
-<div class="message-input">
+<div class="message-input border-component-color">
 <div class="input-message-container">
-<textarea dir="ltr" name="msg" class="input-message autogrow-short" placeholder="Message" style="height: 49px;"></textarea>
+<textarea dir="ltr" name="msg" class="input-message autogrow-short" placeholder="Message" style="height: 35px;"></textarea>
 
 <div class="inner-left-toolbar">
 <i class="emoji-picker-icon icon-people"></i>
@@ -311,7 +311,7 @@ nihao
 
 </footer>
 </section>
-<section class="flex-tab">
+<section class="flex-tab  border-component-color">
 
 
 
