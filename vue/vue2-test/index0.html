@@ -3,17 +3,158 @@
   <head>
     <meta charset="utf-8">
     <title>vue2-test</title>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"/></script>
-  </script src="https://unpkg.com/vue-material@0.5.2"></script>
-  <link href="https://unpkg.com/vue-material@0.5.2/dist/vue-material.css" rel=stylesheet />
+    <script src="http://vuejs.org/js/vue.js"/></script>
   </head>
   <body>
-    <div id="app"></div>
+     <div id="app">
       {{message}}
+      </div>
+
+      <div id="app-2">
+        <span v-bind:title='message' >
+          Hover your mouse over me for a few seconds to see my dynamically bound title!
+        </span>
+       </div>
+
+
+     <div id="app-3">
+       <p v-if="seen">Now you see me</p>
+     </div>
+
+
+     <div id="app-4">
+     <ol>
+       <li v-for="todo in todos">
+         {{ todo.text }}-{{todo.name}}
+       </li>
+     </ol>
+   </div>
+
+
+
+   <div id="app-5">
+   <p v-once>{{ message }}</p>
+  {{rawHtml}}
+  <div v-html="rawHtml"  :id="message.replace(/\s/,'') | formatId ">{{rawHtml}}</div>
+
+   <button v-on:click="reverseMessage">Reverse Message</button>
+   <button v-on:click="reloadMessage">Reverse Message</button>
+ </div>
+
+ <div id="app-6">
+ <p>{{ message }}</p>
+ <input v-model="message">
+</div>
+
+
+
+<div id="app-7">
+  <form  v-on:submit.prevent="onSubmit">
+          <button type='submit'  @click="uploadData">uploadData</button>
+
+  </form>
+  <ol>
+    <!-- Now we provide each todo-item with the todo object    -->
+    <!-- it's representing, so that its content can be dynamic -->
+    <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:name="name" ></todo-item>
+  </ol>
+</div>
+
+
+
+
+<div id="app-cal">
+  <p>Original message: "{{ message }}"</p>
+  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+</div>
+
+
+<hr>
+<div id="app-style">
+  <div class='static' :class="{ active: isActive,'text-danger': hasError }">style1</div>
+  <div class='styleMan' :class="styleMan">style2</div>
+ <div class='styleMan' :class="styleMan2">styleMan2</div>
+
+ <div class='styleMan' :style="{ color: activeColor, fontSize: fontSize + 'px' }">styleMan2</div>
+
+
+<div @click ="doThat1" >
+
+<a v-on:click.stop.prevent="doThat">doThat</a>
+
+</div>
+
+
+<hr>
+
+
+</div>
+ 
+
   </body>
 
 
   <script>
+
+
+    var vm1 = new Vue({
+      el: '#app-style',
+      data: {
+        isActive:  1,
+        hasError: 'nihao',
+        activeColor:'red',
+        fontSize:'90',
+        styleMan: {
+            nihao :1,
+            bad : 2
+        }
+      },
+      computed : {
+        styleMan2 : function()
+        {
+          return {
+            active: this.isActive && !this.error,
+           'text-danger': this.error && this.error.type === 'fatal',
+          }
+
+        },
+
+      },
+        methods:{
+          doThat:function(){
+            alert('doThat')
+          },
+          doThat1:function(){
+            alert('doThat1')
+          },
+          submit:function(){
+              alert('tab aubmit')
+          }
+        }
+
+    })
+
+
+
+  var vm = new Vue({
+    el: '#app-cal',
+    data: {
+      message: 'Hello'
+    },
+    computed:{
+      reversedMessage : function(){
+      return this.message.split('').reverse().join('')
+    },
+    now: {
+      get : function () {
+        return Date.now()
+      },
+      set : function(newValue){
+        this.message =  newValue+' 0000'
+      }
+    }
+    }
+  })
 
 
   var app = new Vue({
@@ -24,6 +165,88 @@
   })
 
 
+  var app2 = new Vue({
+    el: '#app-2',
+    data: {
+      message: 'You loaded this page on ' + new Date()
+    }
+  })
+
+  var app3 = new Vue({
+      el:'#app-3',
+      data:{
+        seen:false
+      }
+  })
+
+
+  var app4 = new Vue({
+      el:'#app-4',
+      data:{
+        todos: [
+        { text: 'Learn JavaScript' ,name:'hello' },
+        { text: 'Learn Vue' },
+        { text: 'Build something awesome' }
+      ]
+      }
+  })
+
+
+  var app5 = new Vue({
+    el: '#app-5',
+    data: {
+      message: 'Hello Vue.js!',
+      rawHtml:"<a href='/dd'>nihao</a"
+    },
+    filters:{
+      formatId : function(val){
+        return 1;
+      }
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      },
+      reloadMessage: function(){
+         this.message   =  'this is a reloaded message'
+      }
+    }
+  })
+
+  var app6 = new Vue({
+    el: '#app-6',
+    data: {
+      message: 'Hello Vue!'
+    }
+  })
+
+  Vue.component('todo-item', {
+  template: '<li>{{ todo.text }} {{name.short}}</li>',
+  props:['todo','name'],
+
+  })
+
+
+  var app7 = new Vue({
+    el: '#app-7',
+    data: {
+      groceryList: [
+        { text: 'Vegetables' },
+        { text: 'Cheese' },
+        { text: 'Whatever else humans are supposed to eat' }
+      ],
+      name:{short:'name is short'}
+    },
+    methods:{
+      uploadData: function(){
+        console.log(this.$data.name.short+'upload')
+      }
+    }
+  })
+
+
   </script>
+
+
 
 </html>

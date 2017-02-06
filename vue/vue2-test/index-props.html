@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue2-test</title>
+    <script src="http://vuejs.org/js/vue.js"/></script>
+  </head>
+  <body>
+
+<hr>
+
+
+<div id="app-data-bind"  message="hello!">
+  <input v-model="parentMsg">
+  {{message}}
+  <br>
+  price:{{price}}
+  <simple-counter  v-bind:message="parentMsg"></simple-counter>
+  <simple-counter v-on:increment="childClick" message="hello2"></simple-counter>
+  <simple-counter  message="hello3"></simple-counter>
+  <simple-counter v-on:click.native="clearMessage" message="hello2"></simple-counter>
+
+  <currency-input v-on:input="updateInputPrice" v-bind:value="price" v-model="price"></currency-input>
+
+</div>
+
+<div id="app-data-slot" >
+  <h1>我是父组件的标题</h1>
+  <hr>
+  slot1:
+  <slot-component  >
+     <h1 slot='header'>{{title}}</h1>
+     <simple-counter message="footer" slot='footer'> </simple-counter>
+  </slot-component>
+ <hr>
+ slot2:
+   <slot-component  >
+    <template  scope="props">
+     <span slot='takeme'>{{ props.text }}-{{props.id}}</span>
+   </template>
+  </slot-component>
+</div>
+
+
+<!-- 实现script定义一个模板 -->
+<script type="x/template" id="modal-template">
+        <div class="container">
+        <header>
+        <slot name="header">1</slot>
+        </header>
+        <main>
+        <slot>只有在没有要分发的内容时才会显示。</slot>
+        </main>
+        <footer>
+        <slot name="footer"></slot>
+
+        <slot name="takeme" id='1' text="hello from child"></slot>
+        </footer>
+        </div>
+
+</script>
+
+
+  </body>
+  <script>
+
+  Vue.component('slot-component', {
+    template: '#modal-template',
+  })
+
+  Vue.component('simple-counter', {
+    template: '<div><span>{{message}}</span><button v-on:click="changeData">{{ counter }}</button> </div>',
+    // data 是一个函数，因此 Vue 不会警告，
+    // 但是我们为每一个组件返回了同一个对象引用
+    data: function () {
+      return { counter: 0 }
+    },
+    methods: {
+         changeData : function()
+         {
+           this.counter ++;
+            this.$emit('increment')
+         },
+         doTheThing:function(){
+            this.counter =  22
+         }
+    },
+     props: ['message'],
+  })
+
+
+ Vue.component('currency-input', {
+      template: ' <span> $ <input ref="input" v-bind:value="value"  v-on:input="updateValue($event.target.value)" > </span> ',
+      props: ['value'],
+      methods: {
+        // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
+        updateValue: function (value) {
+          console.log('updateValue',value)
+          var formattedValue = value
+            // 删除两侧的空格符
+            .trim()
+            // 保留 2 小数位
+            .slice(0, value.indexOf('.')==-1?value.length : value.indexOf('.')+3)
+          // 如果值不统一，手动覆盖以保持一致
+          if (formattedValue !== value) {
+            this.$refs.input.value = formattedValue
+          }
+          // 通过 input 事件发出数值
+          this.$emit('input', Number(formattedValue))
+        }
+      }
+    })
+
+
+  var pp = new Vue({
+    el: '#app-data-bind',
+    data:{
+      //父子数据关系绑定
+      message : 'nihao',
+      parentMsg:'',
+      price:'66.6333',
+    },
+    methods:{
+      childClick:function(){
+        console.log('childClick')
+        this.message =this.message+'-99-<br>'
+      },
+      //响应原生的点击事件
+      clearMessage:function(){
+          console.log('clearMessage')
+         this.message = 'clearMessage';
+      },
+      updateInputPrice: function(msg){
+        console.log('updateInputPrice',msg)
+        this.message =this.price+'-8888888'
+      }
+
+    }
+  })
+
+
+  var pp = new Vue({
+    el: '#app-data-slot',
+    data :{
+      title : 'nihao'
+    }
+  })
+
+ //中央通信
+  var bus = new Vue()
+
+   bus.$emit('id-selected',1)
+
+
+   bus.$on('id-selected',function(id){
+
+     consoloe.log('id-selected=',id)
+
+   })
+
+
+
+
+
+  </script>
+
+
+
+</html>
