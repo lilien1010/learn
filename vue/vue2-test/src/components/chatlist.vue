@@ -70,7 +70,9 @@ export default {
       msg: 'Welcome to Your chat.js App',
       recentChats: [
           {head_url: 'http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160803/c2aa08ac6ad0502a6_0c791.jpg', nickname: 'lilien'},
-          {head_url: 'http://ht-head.oss-cn-shenzhen.aliyuncs.com/140813/thumbsize_100_100_67757_53eb292a2b3ae.jpg', nickname: 'Chocolate ㅋ'}]
+          {head_url: 'http://ht-head.oss-cn-shenzhen.aliyuncs.com/140813/thumbsize_100_100_67757_53eb292a2b3ae.jpg', nickname: 'Chocolate ㅋ'},
+          {head_url:'http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160531/ace20839b5c4bf030_6bfc9.jpg',nickname:'Sara'}
+        ]
     }
   },
   methods: {

@@ -14,11 +14,20 @@
 import imnavtab from './components/imnavtab'
 import message from './components/message'
 
+const NotFound = { template: '<p>Page not found</p>' }
+const Home = { template: '<p>home page</p>' }
+const About = { template: '<p>about page</p>' }
+const routes = {
+  '/': Home,
+  '/about': About
+}
+
+
 export default {
   name: 'im-chat',
   components: {
-  message:      message,
-  imnavtab:   imnavtab
+    message:      message,
+    imnavtab:   imnavtab
   }
 }
 </script>

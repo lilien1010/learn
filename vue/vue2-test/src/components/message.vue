@@ -57,7 +57,7 @@ Drop to upload file
 
 
 </div>
-<div class="messages-box" style="height: calc(100% - 131px);">
+<div class="messages-box" style="height: calc(100% - 70px);">
 <div class="ticks-bar"></div>
 <button class="new-message not">
 <i class="icon-down-big"></i>
