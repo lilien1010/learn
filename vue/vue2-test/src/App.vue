@@ -3,7 +3,7 @@
   <div id="im-chat">
     <imnavtab></imnavtab>
 
-    <message></message>
+    <MessageSection></MessageSection>
   </div>
 
 
@@ -12,7 +12,7 @@
 <script>
 
 import imnavtab from './components/imnavtab'
-import message from './components/message'
+import MessageSection from './components/MessageSection'
 
 const NotFound = { template: '<p>Page not found</p>' }
 const Home = { template: '<p>home page</p>' }
@@ -26,7 +26,7 @@ const routes = {
 export default {
   name: 'im-chat',
   components: {
-    message:      message,
+    MessageSection:      MessageSection,
     imnavtab:   imnavtab
   }
 }

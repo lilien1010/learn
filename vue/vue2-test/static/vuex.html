@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue2-test</title>
+    <script src="http://vuejs.org/js/vue.js"/></script>
+     <script src="https://unpkg.com/vuex@2.0.0"/></script>
+    <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+
+  <script src="https://unpkg.com/tween.js@16.3.4"></script>
+  <script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+
+
+  </head>
+
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: red opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
+
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.example-7-color-preview {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+</style>
+  <body>
+
+<hr>
+
+
+<div id="app">
+  <p>{{ count }}</p>
+
+  <p>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </p>
+  <hr>
+  <span v-for="(item,index) in todos"> {{item.text}} {{item.done?'done':'not'}}
+    <button @click="doneThis(index,true)">Done</button>
+    -> <button @click="doneThis(index,false)">Recover</button><br></span>
+  <Counter> </Counter>
+  <hr>
+  <br>BigSotreCountA：{{BigSotreCountA}}<br>BigSotreCountB:{{BigSotreCountB}}
+</div>
+
+
+<hr>
+app2
+<hr>
+<div id="app2">
+  <p>{{ count }}</p>
+  <p>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </p>
+
+</div>
+
+
+
+
+  </body>
+
+
+
+  <script>
+
+  const moduleB = {
+    state: {  count: 100  },
+  }
+
+  const moduleA = {
+      state: { count: 9 },
+      mutations: {
+       increment (state) {
+         // state 模块的局部状态
+         state.count++
+       }
+     },
+     getters: {
+       doubleCount (state) {
+         return state.count * 2
+       }
+     }
+}
+
+
+const storeBig = new Vuex.Store({
+  state : {
+    count : 99
+  },
+  modules: {
+    a: moduleA,
+    b: moduleB
+  }
+})
+
+
+  var store   =  new Vuex.Store({
+       state :{
+         count:0,
+         todos: [
+         { id: 1, text: 'haha', done: true },
+         { id: 2, text: 'false11', done: false },
+         { id: 3, text: 'haha222', done: true },
+         { id: 4, text: 'false', done: false },
+         { id: 5, text: 'biubiu', done: false }
+       ]
+       },
+       mutations:{
+          increment:  (state) => {state.count++},
+          decrement:  (state) => {state.count--},
+          doneThis:   (state,payload ) =>{
+            if( state.todos[payload.index]){
+              state.todos[payload.index].done=payload.done
+            }
+            console.log( payload)
+            /*  for(var i =0; i<state.todos.length;i++){
+                   if(i==state.todos[i].id && state.todos[i].done){
+                       state.todos[i].done=false
+                   }
+              }
+              */
+          },
+       }
+        ,getters :{
+            doneTodos : state => {
+              return state.todos.filter(todo => todo.done)
+            },
+            doneTodosCount : (state,getters) => {
+                console.log('state.todos:',state.todos)
+                return getters.doneTodos.length
+            }
+       },
+       actions: {
+          increment (context) {
+            context.commit('increment')
+
+            setTimeout(() => {
+              context.commit('decrement')
+            }, 1000)
+          },
+          //和上面一样的效果，只不过是参数解构了，只去参数的 commit 对象
+          decrement ({ commit }) {
+           commit('decrement')
+         },
+         incrementAsync ({ commit }) {
+                setTimeout(() => {
+                  commit('increment')
+                }, 1000)
+              }
+        }
+  })
+
+  // 创建一个 Counter 组件
+  const Counter = {
+    template: `<div>{{ count }},doneTodosCount={{doneTodosCount}}</div>`,
+    computed: {
+      count () {
+        return this.$store.state.count
+      },
+      doneTodosCount () {
+        return this.$store.getters.doneTodosCount
+      }
+    }
+  }
+
+
+    var app = new Vue({
+      el : '#app',
+      data :{
+
+      },
+      store,
+      components:{Counter},
+      computed:{
+        BigSotreCountA() {
+          return storeBig.state.a.count
+        },
+        BigSotreCountB() {
+          return storeBig.state.b.count
+        },
+        count() {
+          return store.state.count
+        },
+        todos (){
+          return store.state.todos
+        }
+      },
+      methods:{
+        increment () {
+          //store.commit('increment')
+          store.dispatch('incrementAsync',{amount:10})
+        },
+        decrement () {
+          store.commit('decrement')
+        },
+        doneThis(idx,done) {
+
+          store.commit({type:'doneThis',index:idx,done:done})
+        }
+      }
+
+    })
+
+
+    var app = new Vue({
+      el : '#app2',
+      data :{
+
+      },
+      computed:{
+        count() {
+          return store.state.count
+        }
+      },
+      methods:{
+        increment (){
+          store.commit('increment')
+        },
+        decrement (){
+          store.commit('decrement')
+        }
+      }
+
+    })
+
+
+  </script>
+
+
+
+</html>

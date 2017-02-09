@@ -3,29 +3,23 @@
 
 <aside class="side-nav" role="navigation">
 
-<chatlist0>
-</chatlist0>
+<chatListSection>
+</chatListSection>
 
 </aside>
-<!--
-<chatlist>
-</chatlist>
--->
+
 
 
 </template>
 
 <script>
 
-
-import chatlist from './chatlist'
-import chatlist0 from './chatlist0'
+import chatListSection from './chatListSection'
 
 export default {
   name: 'imnavtab',
   components: {
-    chatlist:   chatlist,
-    chatlist0:  chatlist0,
+    chatListSection:   chatListSection,
   }
 }
 </script>

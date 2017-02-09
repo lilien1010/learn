@@ -12,20 +12,10 @@
 
         <div class="chat-viewport">
           <md-list>
-            <md-list-item v-for="user in recentChats">
-              <md-avatar>
-                <img :src="head_prefix+user.head_url" alt="People">
-              </md-avatar>
+            <chatItem
+               
 
-              <span>{{user.nickname}}</span>
-
-              <md-button class="md-icon-button md-list-action">
-                <md-icon class="md-primary">chat_bubble</md-icon>
-              </md-button>
-
-            </md-list-item>
-
-
+            ></chatItem>
           </md-list>
         </div>
 
@@ -44,27 +34,39 @@
 
 <script>
 
+import chatItem from './chatItem.vue'
+import { mapGetters } from 'vuex'
+
 
 export default {
-  name: 'chatlist0',
+  name: 'chatListSection',
+  components: { chatItem },
+
   data () {
     return {
-      head_prefix: 'http://ht-head.oss-cn-shenzhen.aliyuncs.com/',
       msg: 'Welcome to Your chat.js App',
-      recentChats: [
-          {head_url: '20160803/c2aa08ac6ad0502a6_0c791.jpg', nickname: 'lilien'},
-          {head_url: '140813/thumbsize_100_100_67757_53eb292a2b3ae.jpg', nickname: 'Chocolate ㅋ'},
-          {head_url:'20170206/0a00cbabc6c2b5316_08978.jpg',nickname:'Sara'},
-          {head_url:'20170206/dc307b42be7fc6076_163d6.jpg',nickname:'maru '},
-          {head_url:'20170206/fa5ca2b88488b98ab_64c6d.jpg',nickname:'一如你我0223 '},
-          {head_url:'20170206/a12396e5147711d46_6e289.jpg',nickname:'조성하s '},
-          {head_url:'20170206/c698c4c38e9ff133b_7a718.jpg',nickname:'lida '},
-          {head_url:'20170206/3413da29b0fb59bf7_9c367.jpg',nickname:'ke nji '},
-        ] 
     }
   },
+  computed:{
+      ...mapGetters([
+        'threads',
+        'currentThread'
+      ]),
+
+      head_prefix () {
+          this.$sotre.state.file_download_profile.headimg_url
+      },
+      recentChats() {
+          this.$sotre.state.file_download_profile.headimg_url
+      }
+
+  },
   methods: {
-    toggleLeftSidenav() {
+
+    switchChatItem (id) {
+      this.$store.dispatch('switchChatItem', { id })
+    },
+  toggleLeftSidenav() {
       this.$refs.leftSidenav.toggle();
     },
     toggleRightSidenav() {
