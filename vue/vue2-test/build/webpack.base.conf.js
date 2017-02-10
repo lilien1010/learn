@@ -2,7 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
-
+const webpack = require('webpack')
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide whether to enable CSS source maps for the
 // various preprocessor loaders added to vue-loader at the end of this file
@@ -84,6 +84,14 @@ module.exports = {
   eslint: {
     // formatter: require('eslint-friendly-formatter')
   },
+  plugins: [
+   /*new webpack.optimize.UglifyJsPlugin({
+     compress: {
+       warnings: false
+     }
+   })
+   */
+ ],
   vue: {
     loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
     postcss: [

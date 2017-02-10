@@ -5,7 +5,11 @@
 
     <md-toolbar class="md-large">
       <div class="md-toolbar-container">
-        <h3 class="md-title">Hellotalk 1</h3>
+
+        <div class="avatar" style="width: 60px;height: 60px;">
+          <div class="avatar-image"  :style="{backgroundImage: 'url('+my_profile_img+')' }"></div>
+        </div>
+         <span class='my_nickname'>{{my_nickname}}</span>
       </div>
     </md-toolbar>
 
@@ -13,8 +17,8 @@
         <div class="chat-viewport">
           <md-list>
             <chatItem
-               
-
+              v-for="item in chatuserlist"
+               :userinfo="item"
             ></chatItem>
           </md-list>
         </div>
@@ -49,15 +53,21 @@ export default {
   },
   computed:{
       ...mapGetters([
-        'threads',
-        'currentThread'
+        'chatuserlist',
+        'currentThread',
+        'my_profile_img'
       ]),
-
+      chatuserlist(){
+        return this.$store.state.chatuserlist
+      },
+      my_nickname (){
+        return this.$store.state.Config.my_info.NK
+      },
       head_prefix () {
-          this.$sotre.state.file_download_profile.headimg_url
+          this.$store.state.Config.file_download_profile.headimg_url
       },
       recentChats() {
-          this.$sotre.state.file_download_profile.headimg_url
+
       }
 
   },
@@ -88,6 +98,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.my_nickname{
+  margin-left: 8px;
+    position: relative;
+    margin-top: -40px;
+    font-size: larger;
+}
+
 h1, h2 {
   font-weight: normal;
 }
@@ -108,7 +126,7 @@ li {
 }
 
 .md-toolbar.md-large{
-min-height:28px;
+min-height:38px;
 }
 a {
   color: #42b983;

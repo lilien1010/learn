@@ -1,9 +1,9 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vuex from 'Vuex'
 import App from './App'
-
+import * as msgApi from './api'
+import store from './store'
 /**/
 import VueMaterial from 'vue-material'
 
@@ -14,14 +14,21 @@ import 'assets/rocket.css'
 
 Vue.use(VueMaterial)
 
-import store from './store'
-//
-//
-Vue.use(Vuex)
+Vue.config.debug = true
+
+Vue.filter('time', timestamp => {
+  return new Date(timestamp).toLocaleTimeString()
+})
+
+
+
+msgApi.startLogin({userid:1000372})
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   template: '<App/>',
   components: { App }
 })

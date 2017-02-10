@@ -164,25 +164,257 @@ v-on:animationend="animationend"
   <script>
 
 
-  const NotFound = { template: '<p>Page not found</p>' }
-  const Home = { template: '<p>home page</p>' }
-  const About = { template: '<p>about page</p>' }
-  const routes = {
-    '/': Home,
-    '/about': About
-  }
   new Vue({
-    el: '#app',
+    el: '#example-4',
     data: {
-      currentRoute: window.location.pathname
+      show: false
+    },
+    methods: {
+      beforeEnter: function (el) {
+        el.style.opacity = 0
+        el.style.transformOrigin = 'left'
+      },
+      enter: function (el, done) {
+        Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+        Velocity(el, { fontSize: '1em' }, { complete: done })
+      },
+      leave: function (el, done) {
+        Velocity(el, { translateX: '15px', rotateZ: '90deg' }, { duration: 600 })
+        Velocity(el, { rotateZ: '100deg',translate3d: '10deg' }, { loop: 31 })
+        Velocity(el, {
+          rotateZ: '45deg',
+          translateY: '30px',
+          translateX: '30px',
+          opacity: 0
+        }, { complete: done })
+      }
+    }
+  })
+
+  new Vue({
+    el: '#staggered-list-demo',
+    data: {
+      query: '',
+      list: [
+        { msg: 'Bruce Lee' },
+        { msg: 'Jackie Chan' },
+        { msg: 'Chuck Norris' },
+        { msg: 'Jet Li' },
+        { msg: 'Kung Fury' }
+      ]
     },
     computed: {
-      ViewComponent () {
-        return routes[this.currentRoute] || NotFound
+      computedList: function () {
+        var vm = this
+        return this.list.filter(function (item) {
+          return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
+        })
       }
     },
-    render (h) { return h(this.ViewComponent) }
+    methods: {
+      beforeEnter: function (el) {
+        el.style.opacity = 0
+        el.style.height = 0
+      },
+      enter: function (el, done) {
+        var delay = el.dataset.index * 150
+        setTimeout(function () {
+          Velocity(
+            el,
+            { opacity: 1, height: '1.6em' },
+            { complete: done }
+          )
+        }, delay)
+      },
+      leave: function (el, done) {
+        var delay = el.dataset.index * 150
+        setTimeout(function () {
+          Velocity(
+            el,
+            { opacity: 0, height: 0 },
+            { complete: done }
+          )
+        }, delay)
+      }
+    }
   })
+
+  new Vue({
+    el: '#demo',
+    data: {
+      show: true,
+      show2: true
+    },
+    methods:{
+      beforeEnter:function(){
+        console.log('beforeEnter')
+      },
+      enter:function(){
+        console.log('enter')
+      },
+      afterEnter:function(){
+        console.log('afterEnter')
+      },
+      enterCancelled:function(){
+        console.log('enterCancelled')
+      },
+      beforeLeave:function(){
+        console.log('beforeLeave')
+      },
+      leave:function(){
+        console.log('leave')
+      },
+      afterLeave:function(){
+          console.log('afterLeave')
+      },
+      leaveCancelled:function(){
+              console.log('leaveCancelled')
+      },
+      animationend:function(){
+          console.log('animationend')
+      },
+      transitionend:function(){
+              console.log('transitionend')
+      },
+    }
+  })
+
+
+
+  new Vue({
+  el: '#example-3',
+  data: {
+    show: true
+  }
+})
+
+// 这种复杂的补间动画逻辑可以被复用
+// 任何整数都可以执行动画
+// 组件化使我们的界面十分清晰
+// 可以支持更多更复杂的动态过渡
+// strategies.
+var Color = net.brehaut.Color
+Vue.component('animated-integer', {
+  template: '<span >{{ tweeningValue }}</span>',
+  props: {
+    value: {
+      type: Number,
+      required: true
+    },
+    tag_name : {
+        type: String,
+    },
+    tweenedCSSColor :{
+      type:Object
+    }
+  },
+  data: function () {
+    return {
+      tweeningValue: 0,
+    }
+  },
+  watch: {
+    value: function (newValue, oldValue) {
+       this.tween(oldValue, newValue)
+      // this.updateColor()
+    }
+  },
+  mounted: function () {
+       console.log(this.tag_name,'mounted:',this.value,',tweeningValue:',this.tweeningValue)
+       this.tween(0, this.value)
+
+  },
+
+  methods: {
+    tween: function (startValue, endValue) {
+          var vm = this
+          var animationFrame
+          function animate (time) {
+            TWEEN.update(time)
+            animationFrame = requestAnimationFrame(animate)
+          }
+          new TWEEN.Tween({ tweeningValue: startValue })
+            .to({ tweeningValue: endValue }, 500)
+            .onUpdate(function () {
+              vm.tweeningValue = this.tweeningValue.toFixed(0)
+            })
+            .onComplete(function () {
+              cancelAnimationFrame(animationFrame)
+            })
+            .start()
+
+          animationFrame = requestAnimationFrame(animate)
+    }
+  }
+})
+// All complexity has now been removed from the main Vue instance!
+new Vue({
+  el: '#example-8',
+  data: {
+    firstNumber: 20,
+    secondNumber: 40,
+    tweenedColor :{
+            red: 250,
+            green: 0,
+            blue: 0,
+            alpha: 1
+    }
+  },
+  mounted: function () {
+       this.updateColor()
+  },
+  methods:{
+
+    updateColor: function () {
+      var vm = this
+      var animationFrame
+      function animate (time) {
+        TWEEN.update(time)
+        animationFrame = requestAnimationFrame(animate)
+      }
+      var color ={}
+      color.red=   (Math.random() );
+      color.green=   (Math.random()  );
+      color.blue=   (Math.random() );
+        console.log(color.green,' red:',color.red,' blue:',color.blue)
+        new TWEEN.Tween(this.tweenedColor)
+          .to(color, 500)
+          .onUpdate(function () {
+              //vm.tweeningValue = this.tweeningValue.toFixed(0)
+              console.log(this.green,' red:',this.red,' blue:',this.blue,' alpha:',this.alpha)
+
+          })
+          .onComplete(function () {
+
+            cancelAnimationFrame(animationFrame)
+          })
+          .start()
+
+      animationFrame = requestAnimationFrame(animate)
+   }
+  },
+  watch: {
+    firstNumber: function (newValue, oldValue) {
+      this.updateColor()
+    }
+  },
+  computed: {
+        result: function () {
+          return this.firstNumber + this.secondNumber
+        },
+        tweenedCSSColor: function () {
+         var css = new Color({
+           red: this.tweenedColor.red,
+           green: this.tweenedColor.green,
+           blue: this.tweenedColor.blue,
+           alpha: this.tweenedColor.alpha
+         }).toCSS()
+         console.log('css:',css,JSON.stringify(this.tweenedColor))
+         return css
+       }
+    },
+})
+
 
   </script>
 

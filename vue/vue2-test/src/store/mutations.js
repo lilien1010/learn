@@ -26,10 +26,33 @@ export default {
 
   [types.SWITCH_THREAD] (state, { id }) {
     setCurrentThread(state, id)
-  }
+  },
+
+  [types.LOG_SUCESS] (state,{data}) {
+
+   state.Config = data
+    console.log(data,data.my_info.HU)
+  },
+  [types.GET_CHAT_LIST] (state,{data}) {
+    if(data){
+        state.chatuserlist = data
+    }
+    console.log(data)
+  },
+
 }
 
 function createThread (state, id, name) {
+  set(state.threads, id, {
+    id,
+    name,
+    messages: [],
+    lastMessage: null
+  })
+}
+
+
+function setChatUserlist (state, id, name) {
   set(state.threads, id, {
     id,
     name,

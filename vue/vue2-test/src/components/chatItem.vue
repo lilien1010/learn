@@ -4,21 +4,26 @@
 
   <md-list-item
    :class="{ active: active }"
-    @click="$emit('switch-chat-item', chatitem.id)">
-  >
+    @click="$emit('switch-chat-item', userinfo.UI)">
+
     <md-avatar>
-      <img :src="head_prefix+user.head_url" alt="People">
+      <img :src="head_img" alt="People">
     </md-avatar>
 
-    <span>{{user.nickname}}</span>
+
+    <div class="md-list-text-container">
+           <span>{{userinfo.NK}}</span>
+           <p>{{userinfo.lastMessage?userinfo.lastMessage.des:'2ssssssssssssssssssssssss22'}}</p>
+   </div>
+
+
+
 
     <md-button class="md-icon-button md-list-action">
-      <md-icon class="md-primary">chat_bubble</md-icon>
+      <md-icon class="md-primary">chat_bubble</md-icon>{{lastactive}}
     </md-button>
 
-    <div class="thread-time">
-      ==
-    </div>
+    <md-divider class="md-inset"></md-divider>
 
   </md-list-item>
 
@@ -33,19 +38,18 @@
 export default {
   name: 'chatItem',
   props: {
-    chatitem: Object,
-    active: Boolean
+    userinfo: Object,
+    active: Boolean,
+    lastactive:Number
   },
   data () {
-    return {
-      msg: 'Welcome to Your chat.js App',
-      head_prefix : 'http://cn-head-cdn.nihaotalk.com/'
-    }
+
   },
   computed:{
-      head_prefix () {
-          this.$sotre.state.file_download_profile.headimg_url
-      }
-  }
+    head_img ( ) {
+        return  this.$store.state.Config.file_download_profile.headimg_url+this.userinfo.HU
+    }
+  },
+
 }
 </script>

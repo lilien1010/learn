@@ -25,5 +25,9 @@ export default {
 </script>
 
 <style scoped>
+.side-nav{
+  border-right: #d0cccc 1px;
+    border-style: solid;
+  }
 
 </style>

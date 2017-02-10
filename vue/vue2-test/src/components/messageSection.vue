@@ -14,6 +14,14 @@ export default {
       msg: 'Welcome to Your chat.js App',
      }
   },
+  computed :{
+     chatWithInfo() {
+       return  {
+            headimg_url :  'http://cn-head-cdn.nihaotalk.com/20161024/545abc45a76a01ab9_20c2d.jpg',
+            nickname : 'dddddd'
+       }
+     }
+  },
   methods: {
 
   }
@@ -22,9 +30,6 @@ export default {
 
 <template>
 <div class="main-content" style="transform: translateX(0px);">
-
-
-
 
 
 <div class="room-container"><div class="dropzone">
@@ -48,10 +53,9 @@ Drop to upload file
   	</div>
   				<h2>
 
-  						<a href="#favorite" class="toggle-favorite"><i class="icon-star favorite-room" aria-label="Unfavorite"></i></a>
-
-  					<i class="icon-hash status-offline"></i>
-  					<span class="room-title">china</span>
+            <div class="md-avatar md-theme-default"><img :src="chatWithInfo.headimg_url" alt="People"></div>
+  
+  					<span class="room-title">{{chatWithInfo.nickname}}</span>
   					<span class="room-topic"></span>
   				</h2>
   			</header>
@@ -153,7 +157,8 @@ hello
 
 <button class="thumb user-card-message" data-username="lien.lee" tabindex="1"><div class="avatar">
 <div class="avatar-image" style="background-image:url(http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160803/c2aa08ac6ad0502a6_0c791.jpg);"></div>
-</div></button>
+</div>
+</button>
 
 
 

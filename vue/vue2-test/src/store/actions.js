@@ -20,3 +20,11 @@ export const sendMessage = ({ commit }, payload) => {
 export const switchThread = ({ commit }, payload) => {
   commit(types.SWITCH_THREAD, payload)
 }
+
+
+
+export const getChatUserList= ({commit},payload) => {
+
+  commit(types.GET_CHAT_LIST,payload)
+
+}

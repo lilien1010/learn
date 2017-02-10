@@ -3,18 +3,31 @@ import Vuex from 'vuex'
 import * as getters from './getters'
 import * as actions from './actions'
 import mutations from './mutations'
-import createLogger from '../../../src/plugins/logger'
+import * as msgApi from '../api'
+
+var socketPlugin  = msgApi.createWebSocketPlugin()
 
 Vue.use(Vuex)
 
 const state = {
-  currentChatItemID: null,
-  threads: {
+  currentChatUserID: null,
+  currentLoginUserID: 1000372,
+  Config:{
+     file_download_profile:{
+      headimg_url:'http://cn-head-cdn.nihaotalk.com/'
+    },
+    my_info : {
+      HU:'cs_logo.jpg'
+    }
+  },
+  chatuserlist: [
+
+
+  ],
+  messages: {
 
   },
-  messages: {
-     
-  }
+
 }
 
 export default new Vuex.Store({
@@ -22,7 +35,5 @@ export default new Vuex.Store({
   getters,
   actions,
   mutations,
-  plugins: process.env.NODE_ENV !== 'production'
-    ? [createLogger()]
-    : []
+  plugins : [socketPlugin]
 })
