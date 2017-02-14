@@ -1,35 +1,7 @@
 
 
-<script>
-
-import Message from './Message.vue'
-import { mapGetters } from 'vuex'
-
-
-export default {
-  name: 'MessageSection',
-  data () {
-    return {
-      head_prefix: 'http://ht-head.oss-cn-shenzhen.aliyuncs.com/',
-      msg: 'Welcome to Your chat.js App',
-     }
-  },
-  computed :{
-     chatWithInfo() {
-       return  {
-            headimg_url :  'http://cn-head-cdn.nihaotalk.com/20161024/545abc45a76a01ab9_20c2d.jpg',
-            nickname : 'dddddd'
-       }
-     }
-  },
-  methods: {
-
-  }
-}
-</script>
-
 <template>
-<div class="main-content" style="transform: translateX(0px);">
+<div class="main-content content-background-color" style="transform: translateX(0px);">
 
 
 <div class="room-container"><div class="dropzone">
@@ -40,25 +12,30 @@ Drop to upload file
 </div>
 <section class="messages-container border-component-color " id="chat-window-4SFNEydqQhHtj5KkPD5XuHAoeDqQADsHLR" aria-label="Channel">
 
-  <header class="fixed-title border-component-color">
-  				<div class="burger">
-  		<i></i>
-  		<i></i>
-  		<i></i>
 
-  			<div class="unread-burger-alert">
-  				1
-  			</div>
+        <header class="fixed-title content-background-color border-component-color">
+        					<div class="burger">
+        		<i></i>
+        		<i></i>
+        		<i></i>
 
-  	</div>
-  				<h2>
+        			<div class="unread-burger-alert color-error-contrast background-error-color">
+        				•
+        			</div>
 
-            <div class="md-avatar md-theme-default"><img :src="chatWithInfo.headimg_url" alt="People"></div>
-  
-  					<span class="room-title">{{chatWithInfo.nickname}}</span>
-  					<span class="room-topic"></span>
-  				</h2>
-  			</header>
+        	</div>
+        					<h2>
+                  <div class="md-avatar md-theme-default">
+                    <img :src="head_img" alt="People" class="head_img">
+                     <img :src="nation_flag" class="nation_flag img-circle"></div>
+
+        							<a href="#favorite" class="toggle-favorite"><i class="icon-star-empty" aria-label="Favorite"></i></a>
+
+
+        						<span class="room-title">{{user_name}}</span>
+        						<span class="room-topic"></span>
+        					</h2>
+        				</header>
 
 <div class="container-bars">
 
@@ -66,7 +43,7 @@ Drop to upload file
 
 
 </div>
-<div class="messages-box" style="height: calc(100% - 70px);">
+<div class="messages-box" style="height: calc(100% - 131px);">
 <div class="ticks-bar"></div>
 <button class="new-message not">
 <i class="icon-down-big"></i>
@@ -77,170 +54,21 @@ New messages
 </div>
 
 <div class="wrapper">
-<ul aria-live="polite">
+  <ul aria-live="polite">
+      <MessageItem
+      v-for="item in currentMessageList"
+       :msg="item"
 
+      >
 
-    <li class="start">
-      Start of conversation
-    </li>
-
-
-
-  <li id="jnvHymFRfPKZDXmzi" class="message   own    new-day" data-username="lien.lee" data-date="January 1, 2017" data-timestamp="1483274340574">
-<div class="day-divider">
-<span>January 1, 2017</span>
-</div>
-
-
-<button class="thumb user-card-message" data-username="lien.lee" tabindex="1"><div class="avatar">
-<div class="avatar-image" style="background-image:url(http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160803/c2aa08ac6ad0502a6_0c791.jpg);"></div>
-</div></button>
-
-
-
-<button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
-
-<span class="info border-component-color color-info-font-color">
-
-
-<span class="time" title="January 1, 2017 8:39 PM">8:39 PM</span>
-
-
-<div class="message-cog-container ">
-<i class="icon-cog message-cog" aria-label="Actions"></i>
-<div class="message-dropdown" style="display: none;">
-<ul>
-<li class="message-dropdown-close"><i class=" icon-angle-left" aria-label="Close"></i></li>
-
-
-<li class="reply-message  message-action" title="Reply" data-id="reply-message"><i class="icon-reply" aria-label="Reply"></i></li>
-
-<li class="edit-message  message-action" title="Edit" data-id="edit-message"><i class="icon-pencil" aria-label="Edit"></i></li>
-
-<li class="delete-message  message-action" title="Delete" data-id="delete-message"><i class="icon-trash-alt" aria-label="Delete"></i></li>
-
-<li class="permalink clipboard message-action" title="Permalink" data-id="permalink"><i class="icon-link" aria-label="Permalink"></i></li>
-
-<li class="copy clipboard message-action" title="Copy" data-id="copy"><i class="icon-paste" aria-label="Copy"></i></li>
-
-<li class="quote-message  message-action" title="Quote" data-id="quote-message"><i class="icon-quote-left" aria-label="Quote"></i></li>
-
-<li class="star-message  message-action" title="Star Message" data-id="star-message"><i class="icon-star-empty" aria-label="Star Message"></i></li>
-
-<li class="reaction-message  message-action" title="Reactions" data-id="reaction-message"><i class="icon-people-plus" aria-label="Reactions"></i></li>
-
-
-</ul>
-</div></div>
-</span>
-<div class="body" dir="auto">
-hello
-
-
-</div>
-<ul class="actionLinks hidden">
-
-</ul>
-<ul class="reactions hidden">
-
-<li class="add-reaction">
-<span class="icon-people-plus"></span>
-</li>
-</ul>
-</li>
-
-  <li id="YuryXffkfXm7mb8to" class="message   own    new-day" data-username="lien.lee" data-date="January 2, 2017" data-timestamp="1483335767929">
-<div class="day-divider">
-<span>January 2, 2017</span>
-</div>
-
-
-<button class="thumb user-card-message" data-username="lien.lee" tabindex="1"><div class="avatar">
-<div class="avatar-image" style="background-image:url(http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160803/c2aa08ac6ad0502a6_0c791.jpg);"></div>
-</div>
-</button>
-
-
-
-<button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
-
-<span class="info border-component-color color-info-font-color">
-
-
-<span class="time" title="January 2, 2017 1:42 PM">1:42 PM</span>
-
-
-<div class="message-cog-container ">
-<i class="icon-cog message-cog" aria-label="Actions"></i>
-</div>
-</span>
-<div class="body" dir="auto">
-nihao
-
-
-</div>
-<ul class="actionLinks hidden">
-
-</ul>
-<ul class="reactions hidden">
-
-<li class="add-reaction">
-<span class="icon-people-plus"></span>
-</li>
-</ul>
-</li>
-
-  <li id="4mZSbdjMAK5MCd9qh" class="message sequential   own" data-username="lien.lee" data-date="January 2, 2017" data-timestamp="1483335773379">
-<div class="day-divider">
-<span>January 2, 2017</span>
-</div>
-
-
-<button class="thumb user-card-message" data-username="lien.lee" tabindex="1"><div class="avatar">
-<div class="avatar-image" style="background-image:url(http://ht-head.oss-cn-shenzhen.aliyuncs.com/20160803/c2aa08ac6ad0502a6_0c791.jpg);"></div>
-</div></button>
-
-
-
-<button type="button" class="user user-card-message" data-username="lien.lee" tabindex="1">lien.lee</button>
-
-<span class="info border-component-color color-info-font-color">
-
-
-<span class="time" title="January 2, 2017 1:42 PM">1:42 PM</span>
-
-
-<div class="message-cog-container ">
-<i class="icon-cog message-cog" aria-label="Actions"></i>
-</div>
-</span>
-<div class="body" dir="auto">
-<span class="emojione emojione-1f61b big" title=":stuck_out_tongue:">😛</span>
-
-
-</div>
-<ul class="actionLinks hidden">
-
-</ul>
-<ul class="reactions hidden">
-
-<li class="add-reaction">
-<span class="icon-people-plus"></span>
-</li>
-</ul>
-</li>
-
-
-</ul>
+      </MessageItem>
+    </ul>
 </div>
 </div>
 <footer class="footer border-component-color">
 
 <form class="message-form" method="post" action="/">
 <div class="message-popup-results">
-
-
-
 
 
 
@@ -255,19 +83,10 @@ nihao
 </div>
 </div>
 
-
-
 <div class="message-buttons file">
   <i class="icon-attach file"></i>
   <input type="file" accept="image/*,audio/*,video/*,application/zip,application/gzip,application/x-gzip,application/x-rar-compressed,application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
 </div>
-
-
-
-
-
-
-
 
 <div class="message-buttons">
   <div class="mic">
@@ -283,9 +102,6 @@ nihao
 <div class="message-buttons video-button">
   <i class="icon-videocam" aria-label="Record"></i>
 </div>
-
-
-
 
 </div>
 
@@ -330,6 +146,56 @@ nihao
 </div></div></div>
 
 </template>
+
+
+<script>
+
+import MessageItem from './MessageItem.vue'
+import { mapGetters } from 'vuex'
+import userinfoCenter from '../api/userinfoCenter'
+
+export default {
+  name: 'MessageSection',
+  data () {
+    return {
+     }
+  },
+  components: { MessageItem },
+  computed :{
+    ...mapGetters({
+      currentMessageList: 'currentMessageList',
+      userinfo: 'currentChatUser' ,
+    }),
+
+    head_img ( ) {
+      if(this.userinfo && this.userinfo.HU){
+        return   this.userinfo.HU
+      }
+      return ''
+    },
+    user_name(){
+      if(!this.userinfo){
+        return ''
+      }
+      if(this.userinfo._type=='muc'){
+        return this.userinfo.roomname
+      }else{
+        return this.userinfo.NK || this.userinfo.UN
+      }
+    },
+    nation_flag() {
+      if(this.userinfo.NN){
+        return userinfoCenter.getProfileFlag(this.userinfo.NN)
+      }
+      return ''
+    },
+  },
+  methods: {
+
+  }
+}
+</script>
+
 
 <style  >
 

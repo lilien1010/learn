@@ -36,25 +36,34 @@ export function createWebSocketPlugin(){
 
       msgModule.getRecentChatList()
 
+      msgModule.recvOffline('1970-10-10 00:00:00')
+
     }),
 
-    msgModule.on('login.fail', data => {
-      store.commit('login.fail', data)
+    msgModule.on(types.LOG_FAIL, data => {
+      store.commit({type:types.LOG_FAIL, data:data.data})
     })
 
     msgModule.on(types.GET_CHAT_LIST, data => {
       store.commit({type:types.GET_CHAT_LIST, data:data.data})
-    
     })
 
 
-    msgModule.on('msg.seen', data => {
-      store.commit('msg.seen', data)
+    msgModule.on(types.RECEIVE_MESSAGE, data => {
+      store.commit({type:types.RECEIVE_MESSAGE, data:data.data})
+    })
+
+    msgModule.on(types.SHOW_USER_BASE_INFO, data => {
+      store.commit({type:types.SHOW_USER_BASE_INFO, data:data.data})
+    })
+
+    msgModule.on(types.SEND_MESSAGE_FAIL, data => {
+      store.commit({type:types.SEND_MESSAGE_FAIL, data:data.data})
     })
 
 
-    msgModule.on('msg.recv', data => {
-      store.commit('msg.recv', data)
+    msgModule.on(types.P2P_MESSAGESEEN, data => {
+      store.commit({type:types.P2P_MESSAGESEEN, data:data.data})
     })
 
 
@@ -73,12 +82,13 @@ export function startLogin({userid} ) {
 
   	msgModule.initChat(url,userid, function(Config){
 
-
         /*检测本地数据库，*/
-
     },function(data){
 
     })
 
+}
 
+export function loadUserinfo(userid) {
+  msgModule.loadUserinfo(userid)
 }

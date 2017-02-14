@@ -17,16 +17,28 @@ const state = {
       headimg_url:'http://cn-head-cdn.nihaotalk.com/'
     },
     my_info : {
-      HU:'cs_logo.jpg'
+      HU:'http://cn-head-cdn.nihaotalk.com/cs_logo.jpg'
     }
   },
-  chatuserlist: [
-
-
-  ],
-  messages: {
-
+  chatuserlist: {},
+  roominfo:{
+      /* roomid: {
+         name: '',
+         userids:[]
+    }*/
   },
+  userinfo : {
+    /* userid => {} */
+  },
+
+  messages: {
+    /*   userid => {
+            msg_ids : {},
+            list    : []
+        }
+    */
+  },
+
 
 }
 

@@ -69,19 +69,22 @@ var HTCHAT  =  	{
 			 this.socket.onmessage = function(evt){
 				if(evt && evt.data){
 					$this.add_tips(' [Recv]:'+ evt.data)
+          var data = null
 					try{
-						$this.recvHandler(JSON.parse(evt.data))
+						data = (JSON.parse(evt.data))
 					}
 					catch(e){
 						console.log(e)
 					}
-
+          if(data){
+            $this.recvHandler(data)
+          }
 				}
 			 }
 
 			this.socket.onerror = function(evt){
 				console.error('WebSocketError!');
-        if($this.connected_before==false && cbfai){
+        if($this.connected_before==false && cbfail){
           cbfail(evt.data)
         }
 				$this.add_tips('socket.error:'+ evt.data)
@@ -108,7 +111,6 @@ var HTCHAT  =  	{
 					},
 			}
 
-
 			var pack 	=	{
 				id		:	this.id_seq,
 				typ		:	"msg",
@@ -126,7 +128,7 @@ var HTCHAT  =  	{
 			if(sdy== 1 ){
 				this.id_seq++
 				var jsonStr 	=	JSON.stringify(pack)
-				$this.add_tips(' [Send'+(busi || '' )+']:'+ jsonStr)
+				$this.add_tips('[Send '+(busi || '' )+']:'+ jsonStr)
 				$this.socket.send(jsonStr)
 			}else{
 
@@ -183,7 +185,7 @@ var HTCHAT  =  	{
 			this.sendJson(pack,'seen')
 		},
 		add_tips:function(text){
-			console.log ((new Date()).toISOString(),text )
+			console.log ( text )
 		},
 
 		login_handler: function(recvPack){
@@ -206,11 +208,11 @@ var HTCHAT  =  	{
           if(recvPack.status==0){
               $this.MYINFO  = Object.assign($this.MYINFO,recvPack.data.Config)
               $this._ts_diff  = Date.parse(new Date())-  $this.MYINFO.server_ts
-              $this.trigger('login.success',recvPack.data.Config)
+              $this.trigger(types.LOG_SUCESS,recvPack.data.Config)
               return
           }
         }
-        $this.trigger('login.fail')
+        $this.trigger(types.LOG_FAIL)
 
 				if(recvPack.status!=0){
 					this.socket.close()
@@ -250,6 +252,21 @@ var HTCHAT  =  	{
 					HTCHAT.sendJson(pack,'offline')
 
 		},
+    loadUserinfo : function(userid){
+      if(typeof(userid)=='number' || typeof(userid)=='string'){
+
+        userid  = [parseInt(userid)]
+      }
+      var pack 	=	{
+        id		:	HTCHAT.id_seq,
+        cmd		:	CMD_DEFINE.CMD_SHOW_USER_BASE_INFO,
+        typ 	:	"getinfo",
+        from	:	HTCHAT.MYINFO.userid,
+        to		:	0,
+        data 	:	userid
+      }
+      HTCHAT.sendJson(pack,'getinfo')
+    },
 		getRecentChatList		:function( ){
 					var pack 	=	{
 						id		:	HTCHAT.id_seq,
@@ -280,13 +297,19 @@ var HTCHAT  =  	{
 
 					if (recvPack && recvPack.data){
 
-						if (recvPack.data.msgs){
-							recvPack.data.msgs.forEach(function(v){
-								v.offline 	=	1
+          /*
+           $this.trigger(types.RECEIVE_OFFLINE_MESSAGE,recvPack.data)
+            */
+           var msgs = recvPack.data.msgs
+						if (msgs &&msgs.forEach){
+							msgs.forEach(function(v){
+								 if(v.data){
+                   v.data.offline 	=	1
+                 }
 								 obj.recvHandler(v)
 							})
-
 						}
+
 
 						if (recvPack.data.info.any_more>0){
 
@@ -313,16 +336,27 @@ var HTCHAT  =  	{
 
         }
       },
+      CMD_SHOW_USER_BASE_INFO_ACK:function(obj,recvPack){
+        if(recvPack.status==0){
+          if(recvPack.data  ){
+            obj.trigger(types.SHOW_USER_BASE_INFO,recvPack.data)
+          }
+        }else{
+
+        }
+      },
 			CMD_P2P_MESSAGE					:	function(obj,recvPack){
 
 						if(recvPack.status==0){
 							var add 	=	recvPack.data[recvPack.data.msg_type]
 							obj.add_tips(typeof add=='string' ? add : JSON.stringify(add))
 							//发小消息已读回执
-							setTimeout(function(){this.sendMsgSeen(recvPack)}.bind(obj),1500)
+							setTimeout(function(){obj.sendMsgSeen(recvPack)}.bind(obj),1500)
 
-							if(recvPack.offline==1){
-								obj.add_tips('offline Message')
+              obj.trigger(types.RECEIVE_MESSAGE,recvPack )
+
+							if(recvPack.data.offline==1){
+								//obj.add_tips('offline Message')
 							}else{
 								obj.sendRecipt(recvPack)
 							}
@@ -338,15 +372,19 @@ var HTCHAT  =  	{
 					if(recvPack && recvPack.data && recvPack.data.code){
 						if (recvPack.data.code!=0){
 							obj.add_tips('消息发送失败：'+MSG_RECEIPT_CODE_OR[ recvPack.data.code])
-						}
+              obj.trigger(types.SEND_MESSAGE_FAIL,recvPack.data)
+						}else{
+              $this.trigger(types.SEND_MESSAGE_OK,recvPack.data)
+            }
 					}
 
 			} ,
 			//收到电话邀请
 			CMD_P2P_VIDEO_CHAT_INVITE		:	function(obj,recvPack){
 
-				if(recvPack.offline==1){
+				if(recvPack.data && recvPack.data.offline==1){
 					obj.add_tips('offline VOIP INVITE')
+          obj.trigger(types.SEND_MESSAGE_OK,recvPack.data)
 					return;
 				}
 
@@ -363,7 +401,7 @@ var HTCHAT  =  	{
 			},
 			//对方接受电话
 			CMD_P2P_VIDEO_CHAT_INVITE_ACCEPT		:	function(obj,recvPack){
-
+          //$this.trigger(types.SEND_MESSAGE_OK,recvPack.data)
 			},
 			//接受对方电话回执
 			CMD_P2P_VOIP_INVITE_ACCEPT_RECEIPT		:	function(obj,recvPack){
@@ -374,7 +412,16 @@ var HTCHAT  =  	{
 				this.add_tips('VOIP:对方电话回执')
 			},
 			CMD_P2P_MESSAGESEEN_NOTIFY		:	function(obj,recvPack){
-				obj.sendRecipt(recvPack)
+
+        if(recvPack.data && recvPack.data.offline==1){
+          //obj.add_tips('offline Message')
+        }else{
+          obj.sendRecipt(recvPack)
+        }
+
+        obj.trigger(types.P2P_MESSAGESEEN,recvPack)
+
+
 			} ,
 			CMD_P2P_PUBLIC_MESSAGE			:	function(obj,recvPack){ obj.sendRecipt(recvPack)} ,
 			CMD_P2P_INPUTTING_NOTIFY		:	function(obj,recvPack){  obj.add_tips(recvPack.from +' is input ing')  } ,

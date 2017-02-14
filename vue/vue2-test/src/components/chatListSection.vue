@@ -17,8 +17,10 @@
         <div class="chat-viewport">
           <md-list>
             <chatItem
-              v-for="item in chatuserlist"
+              v-for="item in recentChatUsers"
                :userinfo="item"
+                @switch-chat-item="switchChatItem()"
+
             ></chatItem>
           </md-list>
         </div>
@@ -40,7 +42,7 @@
 
 import chatItem from './chatItem.vue'
 import { mapGetters } from 'vuex'
-
+import * as types from '../store/mutation-types'
 
 export default {
   name: 'chatListSection',
@@ -53,7 +55,7 @@ export default {
   },
   computed:{
       ...mapGetters([
-        'chatuserlist',
+        'recentChatUsers',
         'currentThread',
         'my_profile_img'
       ]),

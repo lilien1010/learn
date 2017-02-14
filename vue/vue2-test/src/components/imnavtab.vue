@@ -15,6 +15,7 @@
 <script>
 
 import chatListSection from './chatListSection'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'imnavtab',

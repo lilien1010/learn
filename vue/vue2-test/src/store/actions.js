@@ -17,8 +17,8 @@ export const sendMessage = ({ commit }, payload) => {
   })
 }
 
-export const switchThread = ({ commit }, payload) => {
-  commit(types.SWITCH_THREAD, payload)
+export const switchChatItem = ({ commit }, payload) => {
+  commit(types.SWITCH_CHAT_ITEM, payload)
 }
 
 

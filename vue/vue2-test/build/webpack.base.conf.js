@@ -12,8 +12,7 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 
 console.log(path.join(__dirname , '/../node_modules/vue/dist/vue.common.js'))
-
-console.log("PATH:"+path.resolve(__dirname,'../node_modules/vue-material/dist/vue-material.js'))
+ 
 
 console.log('fonts:'+utils.assetsPath('fonts/font.[hash:7].[ext]'))
 
