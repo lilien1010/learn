@@ -35,6 +35,7 @@ export default {
 
    state.Config = data
    changeUserinfo(state,state.Config.my_info)
+   state.currentLoginUserID = state.Config.my_info.UI
    set(state.userinfo,state.currentLoginUserID+'',state.Config.my_info)
     console.log(types.LOG_SUCESS,state.Config)
   },
@@ -88,7 +89,9 @@ export default {
 
     if(state.messages[str_userid] && data.data.msg_id){
 
-      state.messages[str_userid].msg_ids[data.data.msg_id].read = 1
+      if(state.messages[str_userid].msg_ids[data.data.msg_id]){
+          state.messages[str_userid].msg_ids[data.data.msg_id].read = 1
+      }
     }
     console.log(types.P2P_MESSAGESEEN,data)
   },
@@ -102,15 +105,29 @@ function addMessage (state, data) {
   data.data.from  = data.from
 
   var str_userid  = data.from == state.currentLoginUserID? data.to : data.from
-  state.currentChatUserID = str_userid
-  if(state.chatuserlist[str_userid] ) {
-    state.chatuserlist[str_userid].ts       = data.data.server_ts
-    state.chatuserlist[str_userid].unread  ++
-    //set(state.chatuserlist[str_userid],ts,data.data.server_ts)
-    //set(state.chatuserlist[str_userid],ts,data.data.server_ts)
-  }else{
-    set(state.chatuserlist, str_userid,{ts  : data.data.server_ts,unread : 1,loading:0})
-  }
+  //state.currentChatUserID = str_userid
+  if(state.currentLoginUserID != data.from){
+    if(state.chatuserlist[str_userid] ) {
+      state.chatuserlist[str_userid].ts       = data.data.server_ts
+      state.chatuserlist[str_userid].unread  ++
+      //set(state.chatuserlist[str_userid],ts,data.data.server_ts)
+      //set(state.chatuserlist[str_userid],ts,data.data.server_ts)
+    }else{
+      set(state.chatuserlist, str_userid,{ts  : data.data.server_ts,unread : 1,loading:0})
+    }
+
+    if(state.userinfo[str_userid]){
+      if(state.userinfo[str_userid].from_profile_ts<data.data.from_profile_ts)
+      {
+        state.userinfo[str_userid].from_profile_ts  = data.data.from_profile_ts
+        updateUserinfo(state,str_userid)
+      }
+    //  set(state.userinfo[str_userid],from_profile_ts,data.data.from_profile_ts)
+    }else{
+      updateUserinfo(state,str_userid)
+    }
+
+ }
 
   if(state.currentChatUserID == str_userid){
       state.chatuserlist[str_userid].unread = 0
@@ -123,16 +140,7 @@ function addMessage (state, data) {
        })
   }
 
-  if(state.userinfo[str_userid]){
-    if(state.userinfo[str_userid].from_profile_ts<data.data.from_profile_ts)
-    {
-      state.userinfo[str_userid].from_profile_ts  = data.data.from_profile_ts
-      updateUserinfo(state,str_userid)
-    }
-  //  set(state.userinfo[str_userid],from_profile_ts,data.data.from_profile_ts)
-  }else{
-    updateUserinfo(state,str_userid)
-  }
+
 
   var len = state.messages[str_userid].list.length
   set(state.messages[str_userid].msg_ids,data.data.msg_id,{index:len,unRead:0})

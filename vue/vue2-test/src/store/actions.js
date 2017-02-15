@@ -10,17 +10,14 @@ export const getAllMessages = ({ commit }) => {
 }
 
 export const sendMessage = ({ commit }, payload) => {
-  api.createMessage(payload, message => {
-    commit(types.RECEIVE_MESSAGE, {
-      message
-    })
-  })
+
 }
 
-export const switchChatItem = ({ commit }, payload) => {
-  commit(types.SWITCH_CHAT_ITEM, payload)
-}
+export const switchChatItem = ({ commit ,state}, payload) => {
+ 
+  state.currentChatUserID = payload.id
 
+}
 
 
 export const getChatUserList= ({commit},payload) => {

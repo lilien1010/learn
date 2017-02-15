@@ -1,6 +1,7 @@
 export const SWITCH_CHAT_ITEM   = 'switchChatItem'
-export const RECEIVE_ALL     = 'RECEIVE_ALL'
-
+export const RECEIVE_ALL        = 'RECEIVE_ALL'
+export const SEND_PACK          = 'SEND_PACK' 
+export const SEND_PACK_FAIL         = 'SEND_PACK_FAIL'
 
 export const RECEIVE_MESSAGE        = 'RECEIVE_MESSAGE'
 export const RECEIVE_OFFLINE_MESSAGE = 'RECEIVE_OFFLINE_MESSAGE'

@@ -10,7 +10,7 @@ function randomString(len) {
 　　var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
 　　var maxPos = $chars.length;
 　　var pwd = '';
-　　for (i = 0; i < len; i++) {
+　　for (var i = 0; i < len; i++) {
 　　　　pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
 　　}
 　　return pwd;
@@ -28,15 +28,19 @@ var HTCHAT  =  	{
 		initMyInfo:function( ){
 
 			this.initChat()
-		},getNowTS:function( tf ){
+		},
+    reConnect : function(){
 
-			var timestamp = Date.parse(new Date())/1000
+    },
+    getNowTS:function( tf ){
+
+			var timestamp =(new Date()).valueOf();
       if(tf){
         var oo = new Date()
-        var day = moment.unix((timestamp- this._ts_diff)*1000)
-        return moment().format('YYYY-MMMM h:mm:ss');
+        var day = moment.unix((timestamp - this._ts_diff)/1000)
+        return day.format('YYYY-MM hh:mm:ss');
       }else{
-			     return timestamp- this._ts_diff
+			     return timestamp - this._ts_diff
       }
 		},
 		initChat: function(url,userid,cbok,cbfail){
@@ -55,7 +59,7 @@ var HTCHAT  =  	{
 
 			var $this 	=	this
 			this.socket.onclose = function(event) {
-				console.log('Client notified socket has closed',event);
+				console.error('Client notified socket has closed',event);
 				$this.add_tips('socket.close:'  )
 			};
 
@@ -95,21 +99,20 @@ var HTCHAT  =  	{
 			return randomString(32)
 		},
 
-		sendJsonMsg :function (text,touserid){
+		sendJsonMsg :function (msgCdi,touserid,cbAfterSend){
 
 			var msg 	=	  {
 					"msg_id"	: this.genMsgID(),
+					"server_ts": this.getNowTS( ),
 					"send_time": this.getNowTS(1),
-					"msg_type":"text", // "text","translate","voice","image","introduction","location","voice_text"
+					"msg_type": msgCdi.msg_type, // "text","translate","voice","image","introduction","location","voice_text"
 					"msg_model":"normal", //  模式包括 "normal","language_exchange"
 					"from_profile_ts":this.MYINFO.profile_ts,
 					"from_nickname": this.MYINFO.my_info.NK,
-
-					// 不同消息的消息内容结构
-					"text":{
-						"text": text
-					},
 			}
+
+      // 不同消息的消息内容结构
+      msg[msgCdi.msg_type] = msgCdi.content
 
 			var pack 	=	{
 				id		:	this.id_seq,
@@ -120,20 +123,21 @@ var HTCHAT  =  	{
 				status	:	0,
 				data 	:	msg || {}
 			}
-			this.sendJson(pack)
+			this.sendJson(pack,'msg')
 		},
 		sendJson:function(pack,busi){
 			var $this 			=	this
-			var sdy 		=	this.socket.readyState
+			var sdy 		   =	this.socket.readyState
 			if(sdy== 1 ){
 				this.id_seq++
 				var jsonStr 	=	JSON.stringify(pack)
 				$this.add_tips('[Send '+(busi || '' )+']:'+ jsonStr)
 				$this.socket.send(jsonStr)
+				$this.trigger(types.SEND_PACK ,{pack:pack,busi:busi} )
 			}else{
-
+        $this.trigger(types.SEND_PACK_FAIL ,{pack:pack,busi:busi} )
 				if (sdy==3) {
-					setTimeout(this.initChat.bind($this),800)
+					//setTimeout(this.initChat.bind($this),800)
 				}
 				console.error('socket.readyState:'+sdy)
 			}
@@ -199,7 +203,7 @@ var HTCHAT  =  	{
         ){
           if(recvPack.status!=0){
   					this.socket.close()
-            console.log('logined in else where ')
+            console.error('logined in else where ')
   				}
           $this.trigger('logout')
         }
@@ -207,7 +211,8 @@ var HTCHAT  =  	{
         if(CMD_DEFINE.CMD_LOGIN_AUTH_ACK == recvPack.cmd){
           if(recvPack.status==0){
               $this.MYINFO  = Object.assign($this.MYINFO,recvPack.data.Config)
-              $this._ts_diff  = Date.parse(new Date())-  $this.MYINFO.server_ts
+              $this._ts_diff  =(new Date()).valueOf()-  $this.MYINFO.server_ts
+              console.log('$this._ts_diff',$this._ts_diff)
               $this.trigger(types.LOG_SUCESS,recvPack.data.Config)
               return
           }

@@ -18,7 +18,7 @@
 
    <span>{{user_name}}</span>
 
-   <p>{{last_text}}</p>
+   <p v-html="last_text"></p>
 
  </div>
 
@@ -81,7 +81,7 @@ export default {
           var item  = this.userinfo.lastMessage
           var _type =item.msg_type
           switch(_type){
-                case 'text':   text =  item.text.text;  break;
+                case 'text':   text =  this.escapeHtml(item.text.text);  break;
                 case 'image':  text = '[image]'; break;
                 case 'voice':    text = '[voice]'; break;
                 case 'doodle':    text = '[doodle]'; break;

@@ -1,10 +1,14 @@
 
 
 <template>
-<div class="main-content content-background-color" style="transform: translateX(0px);">
+<div class="main-content content-background-color" style="transform: translateX(0px); ">
 
 
-<div class="room-container"><div class="dropzone">
+<div class="room-container" style="
+    top: -60px;
+    position: absolute;
+    width: 100%;
+"><div class="dropzone">
 <div class="dropzone-overlay">
 <div>
 Drop to upload file
@@ -43,18 +47,22 @@ Drop to upload file
 
 
 </div>
-<div class="messages-box" style="height: calc(100% - 131px);">
+<div class="messages-box" style="height: calc(100% - 131px);top: 60px;">
 <div class="ticks-bar"></div>
-<button class="new-message not">
+<!-- <button class="new-message not">
 <i class="icon-down-big"></i>
 New messages
 </button>
 <div class="jump-recent not">
 <button>Jump to recent messages <i class="icon-level-down"></i></button>
-</div>
+</div>-->
 
 <div class="wrapper">
   <ul aria-live="polite">
+    <li class="start color-info-font-color">
+										开始交谈
+									</li>
+
       <MessageItem
       v-for="item in currentMessageList"
        :msg="item"
@@ -71,37 +79,47 @@ New messages
 <div class="message-popup-results">
 
 
-
+  <roomUsers v-if='showRoomUsers'></roomUsers>
 </div>
 
 <div class="message-input border-component-color">
 <div class="input-message-container">
-<textarea dir="ltr" name="msg" class="input-message autogrow-short" placeholder="Message" style="height: 35px;"></textarea>
+<textarea dir="ltr" v-model='input_text' @keydown.enter="sendTextMessage($event)" name="msg" class="input-message autogrow-short" placeholder="Message" style="height: 35px;"></textarea>
 
 <div class="inner-left-toolbar">
 <i class="emoji-picker-icon icon-people"></i>
 </div>
 </div>
 
-<div class="message-buttons file">
-  <i class="icon-attach file"></i>
-  <input type="file" accept="image/*,audio/*,video/*,application/zip,application/gzip,application/x-gzip,application/x-rar-compressed,application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-</div>
+<template v-if="has_text">
 
-<div class="message-buttons">
-  <div class="mic">
-    <i class="icon-mic" aria-label="Record"></i>
+      <div @click='sendTextMessage' class="message-buttons send-button">
+          <i class="icon-paper-plane" aria-label="发送"></i>
+        </div>
+</template>
+
+<template v-else>
+
+  <div class="message-buttons file">
+    <i class="icon-attach file"></i>
+    <input type="file" accept="image/*,audio/*,video/*,application/zip,application/gzip,application/x-gzip,application/x-rar-compressed,application/pdf,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
   </div>
-  <div class="stop-mic hidden">
-    <i class="icon-stop" aria-label="Stop Recording"></i>
+
+  <div class="message-buttons">
+    <div class="mic">
+      <i class="icon-mic" aria-label="Record"></i>
+    </div>
+    <div class="stop-mic hidden">
+      <i class="icon-stop" aria-label="Stop Recording"></i>
+    </div>
   </div>
-</div>
 
 
+  <div class="message-buttons video-button">
+    <i class="icon-videocam" aria-label="Record"></i>
+  </div>
 
-<div class="message-buttons video-button">
-  <i class="icon-videocam" aria-label="Record"></i>
-</div>
+</template>
 
 </div>
 
@@ -109,7 +127,7 @@ New messages
 
 </div>
 
-
+<!--
 <div class="formatting-tips" aria-hidden="true" dir="auto">
 
 <b>*bold*</b>
@@ -127,6 +145,7 @@ New messages
 <q><span class="hidden-br"><br></span>&gt;quote</q>
 
 </div>
+-->
 
 
 <div class="editing-commands" aria-hidden="true" dir="auto">
@@ -150,7 +169,9 @@ New messages
 
 <script>
 
+import * as api from '../api'
 import MessageItem from './MessageItem.vue'
+import roomUsers from './roomUsers.vue'
 import { mapGetters } from 'vuex'
 import userinfoCenter from '../api/userinfoCenter'
 
@@ -158,9 +179,11 @@ export default {
   name: 'MessageSection',
   data () {
     return {
+        input_text :'',
+        _showRoomUsers:false
      }
   },
-  components: { MessageItem },
+  components: { MessageItem ,roomUsers},
   computed :{
     ...mapGetters({
       currentMessageList: 'currentMessageList',
@@ -189,9 +212,23 @@ export default {
       }
       return ''
     },
+    has_text () {
+      return this.input_text.length>0
+    },
+    showRoomUsers() {
+        return this._showRoomUsers || this.input_text=='@'
+    }
   },
   methods: {
-
+      sendTextMessage($event) {
+        $event.preventDefault()
+        $event.stopPropagation()
+        console.log('sendTextMessage',this.input_text)
+          if(this.input_text.length>0){
+              api.createMessage(this.userinfo.UI,'text',this.input_text)
+          }
+          this.input_text=''
+      }
   }
 }
 </script>
