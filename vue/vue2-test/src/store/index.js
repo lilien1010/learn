@@ -20,7 +20,17 @@ const state = {
       HU:'http://cn-head-cdn.nihaotalk.com/cs_logo.jpg'
     }
   },
-  chatuserlist: {},
+  chatuserlist: {
+    /*
+      userid => {
+      ts:最后消息的时间
+      ,unreadCnt:未读数量,
+      loading:个人资料是否在家中,
+      index:index ，当前所在下标 列表
+    }
+     */
+
+  },
   roominfo:{
       /* roomid: {
          name: '',

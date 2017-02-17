@@ -6,21 +6,7 @@ import userinfoCenter from '../api/userinfoCenter'
 
 export default {
   [types.RECEIVE_ALL] (state, { messages }) {
-    let latestMessage
-    messages.forEach(message => {
-      // create new thread if the thread doesn't exist
-      if (!state.threads[message.threadID]) {
-        createThread(state, message.threadID, message.threadName)
-      }
-      // mark the latest message
-      if (!latestMessage || message.timestamp > latestMessage.timestamp) {
-        latestMessage = message
-      }
-      // add message
-      addMessage(state, message)
-    })
-    // set initial thread to the one with the latest message
-    setCurrentThread(state, latestMessage.threadID)
+
   },
 
   [types.RECEIVE_MESSAGE] (state, { message }) {
@@ -52,12 +38,12 @@ export default {
     console.log(types.SHOW_USER_BASE_INFO,data)
   },
   [types.GET_CHAT_LIST] (state,{data}) {
-    if(data){
+    if(data && data[0]){
 
         state.currentChatUserID = data[0].UI
         var now   = new Date().getTime()
         data.forEach(function(v,index){
-            set(state.chatuserlist, v.UI+'',{ts:(now-5*360*86400*1000-index ),unread:0,loading:0})
+            set(state.chatuserlist, v.UI+'',{ts:(now-5*360*86400*1000-index ),unreadCnt:0,loading:0,index:index})
             v.loading = 0
             v.from_profile_ts = now/1000
             changeUserinfo(state,v)
@@ -88,9 +74,12 @@ export default {
       var str_userid  = data.from == state.currentLoginUserID? data.to : data.from
 
     if(state.messages[str_userid] && data.data.msg_id){
-
+      //设置未以及读取 了
       if(state.messages[str_userid].msg_ids[data.data.msg_id]){
-          state.messages[str_userid].msg_ids[data.data.msg_id].read = 1
+          var idx = state.messages[str_userid].msg_ids[data.data.msg_id].index
+          if(state.messages[str_userid].list[idx]){
+              set(state.messages[str_userid].list[idx],'read',1)
+          }
       }
     }
     console.log(types.P2P_MESSAGESEEN,data)
@@ -109,11 +98,11 @@ function addMessage (state, data) {
   if(state.currentLoginUserID != data.from){
     if(state.chatuserlist[str_userid] ) {
       state.chatuserlist[str_userid].ts       = data.data.server_ts
-      state.chatuserlist[str_userid].unread  ++
+      state.chatuserlist[str_userid].unreadCnt  ++
       //set(state.chatuserlist[str_userid],ts,data.data.server_ts)
       //set(state.chatuserlist[str_userid],ts,data.data.server_ts)
     }else{
-      set(state.chatuserlist, str_userid,{ts  : data.data.server_ts,unread : 1,loading:0})
+      set(state.chatuserlist, str_userid,{ts  : data.data.server_ts,unreadCnt : 1,loading:0,index:0})
     }
 
     if(state.userinfo[str_userid]){
@@ -127,10 +116,14 @@ function addMessage (state, data) {
       updateUserinfo(state,str_userid)
     }
 
+ }else{
+   if(state.chatuserlist[str_userid] ) {
+     state.chatuserlist[str_userid].ts       = data.data.server_ts
+   }
  }
 
   if(state.currentChatUserID == str_userid){
-      state.chatuserlist[str_userid].unread = 0
+      state.chatuserlist[str_userid].unreadCnt = 0
   }
 
   if(!state.messages[str_userid]){
@@ -143,7 +136,7 @@ function addMessage (state, data) {
 
 
   var len = state.messages[str_userid].list.length
-  set(state.messages[str_userid].msg_ids,data.data.msg_id,{index:len,unRead:0})
+  set(state.messages[str_userid].msg_ids,data.data.msg_id,{index:len,read:0})
 
   state.messages[str_userid].list.push(data.data)
 
@@ -162,19 +155,10 @@ function updateUserinfo(state,userid){
     set(state.userinfo,userid, {loading:1})
   }
 
-
   msgApi.loadUserinfo(userid)
 }
 
 
-function setCurrentThread (state, id) {
-  state.currentThreadID = id
-  if (!state.threads[id]) {
-    debugger
-  }
-  // mark thread as read
-  state.threads[id].lastMessage.isRead = true
-}
 
 function changeUserinfo(state,userItem){
         userItem.HU = state.Config.file_download_profile.headimg_url+userItem.HU

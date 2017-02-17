@@ -48,19 +48,29 @@ export const currentMessageList = (state) => {
     var list  = []
     if(state.messages[str_userid]){
         list  = Object.assign([], state.messages[str_userid].list)
-
-      }
-      list.forEach(function(v){
+   }
+   var listLen  =list.length
+  list.forEach(function(v,idx){
            var show_id  = v.from+''
            var info     = state.userinfo[show_id]
            if(info){
-              Object.assign(v,{HU:info.HU,nation_flag:info.nation_flag})
+              Object.assign(v,{HU:info.HU,nation_flag:info.nation_flag} )
+           }
+           if(v.read==1 && idx!=listLen-1){
+              v.read = 0
            }
       })
-
-    return list;
-
+     return list;
 }
+
+
+
+
+
+
+
+
+
 
 export const recentChatUsers =   state =>{
     var list  = [];
@@ -83,15 +93,14 @@ export const recentChatUsers =   state =>{
                   item.lastMessage  =     state.messages[str_userid].list[len-1]
                 }
             }
-
              list.push(item)
-        }
-/**/
+        } 
     }
 
-    list.sort(function(a,b){
-                return b.ts-a.ts});
-  list.forEach(function(v){
+    //sort user by send ts
+  list.sort(function(a,b){return b.ts-a.ts});
+
+  list.forEach(function(v,index){
 
       console.log('  state.list=',v.UI,v.ts,moment(v.ts).format('MMMM Do YYYY, h:mm:ss a')  ,v.unread)
   })

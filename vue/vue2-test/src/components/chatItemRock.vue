@@ -18,7 +18,7 @@
 
    <span>{{user_name}}</span>
 
-   <p v-html="last_text"></p>
+   <p class='last-text' v-html="last_text"></p>
 
  </div>
 
@@ -81,7 +81,12 @@ export default {
           var item  = this.userinfo.lastMessage
           var _type =item.msg_type
           switch(_type){
-                case 'text':   text =  this.escapeHtml(item.text.text);  break;
+                case 'text': {
+                  text = item.text.text.replace(/\r\n/g, " ")
+                	.replace(/\r/g, " ")
+                	.replace(/\n/g, " ");
+                  text =  this.escapeHtml(text);
+                }break;
                 case 'image':  text = '[image]'; break;
                 case 'voice':    text = '[voice]'; break;
                 case 'doodle':    text = '[doodle]'; break;
@@ -225,6 +230,14 @@ z-index: 10000;
 
 .md-list-item .md-list-item-container .md-avatar:first-child, .md-list-item .md-list-item-container .md-list-action:first-child {
     margin-right: 16px;
+}
+
+.last-text .emojione{
+ height: 14px;
+ width: 14px;
+  min-height: 14px;
+min-width: 14px;
+      margin: 0 .02em;
 }
 
 

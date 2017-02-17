@@ -38,6 +38,7 @@ Vue.prototype.escapeHtml = function (unsafe) {
 	.replace(/>/g, "&gt;")
 	.replace(/"/g, "&quot;")
 	.replace(/\r\n/g, " <br>")
+	.replace(/\r/g, " <br>")
 	.replace(/\n/g, " <br>")
 	.replace(/'/g, "&#039;");
   return emojione.unicodeToImage(html)

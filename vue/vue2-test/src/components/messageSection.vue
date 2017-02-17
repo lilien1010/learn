@@ -8,7 +8,8 @@
     top: -60px;
     position: absolute;
     width: 100%;
-"><div class="dropzone">
+">
+<div class="dropzone" v-show='has_recent_chat'>
 <div class="dropzone-overlay">
 <div>
 Drop to upload file
@@ -57,7 +58,7 @@ New messages
 <button>Jump to recent messages <i class="icon-level-down"></i></button>
 </div>-->
 
-<div class="wrapper">
+<div class="wrapper"  ref="list">
   <ul aria-live="polite">
     <li class="start color-info-font-color">
 										开始交谈
@@ -184,12 +185,22 @@ export default {
      }
   },
   components: { MessageItem ,roomUsers},
+  watch: {
+    'currentMessageList': function () {
+      this.$nextTick(() => {
+        const ul = this.$refs.list
+        ul.scrollTop = ul.scrollHeight
+      })
+    }
+  },
   computed :{
     ...mapGetters({
       currentMessageList: 'currentMessageList',
       userinfo: 'currentChatUser' ,
     }),
-
+    has_recent_chat() {
+        return (this.userinfo && this.userinfo.HU)?true:false
+    },
     head_img ( ) {
       if(this.userinfo && this.userinfo.HU){
         return   this.userinfo.HU

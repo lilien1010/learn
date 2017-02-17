@@ -13,8 +13,7 @@
 </template>
 
 <script>
-
-import imnavtab from './components/imnavtab'
+ 
 import imnavtab_rock from './components/imnavtab_rock'
 import MessageSection from './components/MessageSection'
 

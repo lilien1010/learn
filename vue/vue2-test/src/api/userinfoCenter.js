@@ -58,6 +58,11 @@ export default {
     }
 
 
+    ,saveMsgInfo(){
+      if(!indexedDB){
+        return 
+      }
+    }
 
 
 
