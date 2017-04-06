@@ -1,9 +1,12 @@
+
+
 package main
 
 import (
  . "fmt"
  "math"
  "time"
+ "errors"
 )
 
 var (
@@ -19,8 +22,61 @@ func main(){
   basic()
   constVarArray()
   mapDict()
-  porinter()
+  pp := porinter(33,44)
+  pp += 1
+
+  checkStruct()
+
+  checkRect()
+
+
 }
+
+
+type Person struct {
+  name string
+  age int
+  sex int
+  email string
+}
+
+type rect struct {
+  width, height int
+}
+
+
+func (r *rect) area() int {
+  return r.width * r.height
+}
+
+func (r *rect) perimeter() int {
+  return 2 * (r.width+r.height)
+}
+
+
+func checkRect()  {
+
+   r := rect{width:10,height:30}
+
+   Println("area=",r.area())
+   Println("area=",r.perimeter())
+
+}
+
+func checkStruct() {
+
+  person := Person{"liline",3,2,"lilien@qq.com"}
+
+  Printf("person\t=%v \n",person)
+
+  pPersion  := &person
+
+  pPersion.name = "liling"
+
+  Println("after person\t= ",person)
+
+}
+
 
 func basic()  {
     g_age, g_gender, g_name = 32,true,"asdf"
@@ -125,7 +181,68 @@ func mapDict()  {
 
 }
 
+//make 只用于创建 slice map和chan，并且返回T*
+//new 返回 T
 
-func porinter()  {
+func porinter(a int ,b int) int  {
+    var i int = 3
 
+    var pInt *int = &i
+
+    Printf("i=%d \t pInt=%p *pInt=%d  v1=%v ,v2=%v\n",i,pInt,*pInt,i,pInt)
+
+
+
+    var p *[]int = new([]int)
+    Println("a=",a,b,"p=",p)
+    tot   := sump(1,2,3,4)
+
+    Println(" sum =",tot)
+
+    runNextNum()
+
+    fact := fact(10)
+
+    Println(" fact =",fact)
+
+    return i
+}
+//闭包函数
+
+func nextNum() func() int {
+    i,j := 1,1
+    return func() int {
+       tmp := i+j
+       i, j = j,tmp
+       return tmp
+    }
+}
+
+func runNextNum() {
+
+
+  nextNumFunc := nextNum()
+
+  for i := 0 ;i<10; i++ {
+      Println(nextNumFunc())
+  }
+
+}
+
+func fact (n int) int {
+  if n==0 {
+     return 1
+  }
+  return n* fact(n-1)
+}
+//不定参数
+func sump(nums ...int) int {
+
+   Println("nums=",nums)
+   var _total int = 0
+   for _, num := range nums {
+     _total  += num
+   }
+
+   return _total
 }
