@@ -15,7 +15,9 @@
   "dependencies": {
     "moment": "^2.17.1",
     "vue": "^2.1.0",
+    "vue-file-upload": "^0.1.1",
     "vue-material": "^0.5.2",
+    "vue-preview": "^1.0.5",
     "vue-router": "^2.1.1",
     "vuex": "^2.1.2"
   },
